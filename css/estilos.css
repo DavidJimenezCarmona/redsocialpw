@@ -1,0 +1,22 @@
+h1 {
+	text-align:center;
+	color: #06002E;
+	font: sans-serif small-caps; 
+}
+body{
+	background-color: #14B298;
+}
+#cajalog{
+	text-align: center;
+	color: #06002E;
+	font-size: 17;
+	background-color: #FFCF86;
+	width: 20%;
+	margin: 10px auto 15px auto;
+	border-radius: 10px;
+	padding: 5px;
+}
+a{
+	font-size: 14;
+	color: #B23A3A;
+}
