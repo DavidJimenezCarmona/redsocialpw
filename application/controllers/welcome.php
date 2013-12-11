@@ -12,6 +12,16 @@ class Welcome extends CI_Controller {
 	}
 	public function login()
 	{
-		
+		$this->load->model('modelo_usuario');
+		$usuario=$this->modelo_usuario->login($_POST['usuario'], $_POST['pass']);
+
+		if($usuario==0)
+		{
+			echo "Usuario o contraseña erroneas";
+		}
+		else
+		{
+			//Cargar página principal
+		}
 	}
 }

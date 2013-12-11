@@ -1,6 +1,6 @@
 <?
 class modelo_usuario extends CI_Model {
-
+/*
     $alias="";
     $pass="";
     $nombre="";
@@ -8,7 +8,7 @@ class modelo_usuario extends CI_Model {
     $sexo="";
     $fecha_nacimiento="";
     $email="";
-    $activo=0;
+    $activo=0;*/
 
     function __construct()
     {
@@ -22,10 +22,33 @@ class modelo_usuario extends CI_Model {
         return $query->result();
     }
 
+    function get_usuario($id)
+    {
+        $this->db->select('usuario');
+        $this->db->where('id', $id); 
+        $query = $this->db->get('usuario');
+
+        return $query->result();
+    }
+
+    function login($id, $pass)
+    {
+        $this->db->select('usuario');
+        $this->db->where('id', $id); 
+        $this->db->where('pass', md5($pass));
+        $query = $this->db->get('usuario');
+
+        if ($query->num_rows() > 0)
+        {
+            return $query->row();
+        }
+        return 0;
+    }
+
     function insertar_usuario()
     {
         $this->alias=$_POST['alias'];
-        $this->pass=$_POST['pass'];
+        $this->pass=md5($_POST['pass']);
         $this->nombre=$_POST['nombre'];
         $this->apellidos=$_POST['apellidos'];
         $this->sexo=$_POST['sexo'];
