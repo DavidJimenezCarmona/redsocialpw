@@ -17,7 +17,7 @@ class modelo_amigo extends CI_Model {
         return $query->result();
     }
 
-    function insertar_usuario()
+    function insertar_amigo()
     {
         $this->id_usuario1=$_POST['id_usuario1'];
         $this->id_usuario2=$_POST['id_usuario2'];
