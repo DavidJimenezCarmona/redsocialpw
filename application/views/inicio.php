@@ -3,9 +3,9 @@
 <br>
 
 <div id="cajalog">
-	<?php echo form_open('welcome/login'); ?>
+	<? echo form_open('welcome/login'); ?>
 	<p>Usuario:<br> <?= form_input('usuario'); ?><br>
 	<br>Contraseña:<br> <?= form_password('pass'); ?></p>
-	<?php echo form_submit('Entrar', 'Entrar'); ?><br>
+	<? echo form_submit('Entrar', 'Entrar'); ?><br>
 	<a href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
 </div>
