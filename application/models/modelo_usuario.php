@@ -1,19 +1,19 @@
 <?
 class modelo_usuario extends CI_Model {
-/*
-    $alias="";
-    $pass="";
-    $nombre="";
-    $apellidos="";
-    $sexo="";
-    $fecha_nacimiento="";
-    $email="";
-    $activo=0;*/
 
     function __construct()
     {
         // Llama al constructor de modelo
         parent::__construct();
+
+        $alias=" ";
+        $pass=" ";
+        $nombre=" ";
+        $apellidos=" ";
+        $sexo=" ";
+        $fecha_nacimiento=" ";
+        $email=" ";
+        $activo=0;
     }
     
     function get_usuarios()
@@ -31,10 +31,10 @@ class modelo_usuario extends CI_Model {
         return $query->result();
     }
 
-    function login($id, $pass)
+    function login($alias, $pass)
     {
-        $this->db->select('usuario');
-        $this->db->where('id', $id); 
+        $this->db->select();
+        $this->db->where('alias', $alias); 
         $this->db->where('pass', md5($pass));
         $query = $this->db->get('usuario');
 

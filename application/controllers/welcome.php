@@ -8,6 +8,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('headers');
 		$this->load->view('inicio');
 		$this->load->view('footer');
+		$this->load->database(); 
 
 	}
 	public function login()
@@ -17,7 +18,11 @@ class Welcome extends CI_Controller {
 
 		if($usuario==0)
 		{
+			$this->load->helper('form');
+			$this->load->view('headers');
+			$this->load->view('inicio');
 			echo "Usuario o contraseña erroneas";
+			$this->load->view('footer');
 		}
 		else
 		{
