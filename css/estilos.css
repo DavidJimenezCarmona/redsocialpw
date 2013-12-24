@@ -60,20 +60,24 @@ body{
 
 #primer_bloque {
 	float: left;
-	margin-left: 25em;
+	margin-left: 33em;
 }
 
 #segundo_bloque {
 	float: left;
-	margin-left: 10em;
+	margin-left: 5em;
 }
 
 #tercer_bloque {
 	float: left;
-	margin-left: 10em;
+	margin-left: 5em;
 }
 
 #cuarto_bloque {
 	float: left;
-	margin-left: 10em;
+	margin-left: 5em;
+}
+
+#mensaje_error {
+	color: red;
 }

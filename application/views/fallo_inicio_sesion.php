@@ -5,7 +5,7 @@
 </div>
 <br><br><br><br><br><br>
 <h1>FriendShipDiary</h1>
-<img id="logo" src="<?php base_url();?>img/logo2.png"/>
+<img id="logo" src="../../img/logo2.png"/>
 <br>
 
 <div id="cajalog">
@@ -14,5 +14,6 @@
 	<br>Contraseña:<br> <?= form_password('pass'); ?></p>
 	<? echo form_submit('Entrar', 'Entrar'); ?><br>
 	<br>
+	<p id="mensaje_error"> Usuario y/o contraseña incorrectos.</p>
 	<a id="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
 </div>

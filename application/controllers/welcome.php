@@ -3,7 +3,8 @@
 class Welcome extends CI_Controller {
 
 	public function index()
-	{
+	{	
+		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->view('headers');
 		$this->load->view('inicio');
@@ -13,6 +14,7 @@ class Welcome extends CI_Controller {
 	}
 	public function login()
 	{
+		$this->load->helper('url');
 		$this->load->model('modelo_usuario');
 		$usuario=$this->modelo_usuario->login($_POST['usuario'], $_POST['pass']);
 
@@ -20,7 +22,7 @@ class Welcome extends CI_Controller {
 		{
 			$this->load->helper('form');
 			$this->load->view('headers');
-			echo "Usuario o contraseña erroneas";
+			$this->load->view('fallo_inicio_sesion');
 			$this->load->view('footer');
 		}
 		else
