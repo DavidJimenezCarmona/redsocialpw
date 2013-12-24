@@ -25,6 +25,7 @@ body{
 	background-color: #990099;
 	width: 20em;
 	border: 0.5em solid black;
+	border-radius: 1em;
 }
 
 #texto_registro {
