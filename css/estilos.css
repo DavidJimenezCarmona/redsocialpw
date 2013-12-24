@@ -17,6 +17,22 @@ body{
 	padding: 5px;
 	border: 0.5em solid black;
 }
+
+#registro {
+	float: right;
+	color: #06002E;
+	font-size: 14;
+	background-color: #990099;
+	width: 20em;
+	border: 0.5em solid black;
+}
+
+#texto_registro {
+	text-align: center;
+	font-family: 'Chau Philomene One', sans-serif;
+	font-size: 20;
+}
+
 #enlace{
 	font-size: 16;
 	color: white;

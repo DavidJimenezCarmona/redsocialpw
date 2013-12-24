@@ -1,4 +1,9 @@
 <br>
+<div id="registro">
+	<p id="texto_registro"> ¿Aún no formas parte de FSD?<br><br>
+	<? echo form_submit('Registrate','Registrate'); ?></p>
+</div>
+<br><br><br><br><br><br>
 <h1>FriendShipDiary</h1>
 <img id="logo" src="img/logo2.png"/>
 <br>
