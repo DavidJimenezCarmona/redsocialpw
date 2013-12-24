@@ -4,13 +4,13 @@ h1 {
 	font: sans-serif small-caps; 
 }
 body{
-	background-color: #14B298;
+	background-color: #000099;
 }
 #cajalog{
 	text-align: center;
 	color: #06002E;
 	font-size: 17;
-	background-color: #FFCF86;
+	background-color: #990099;
 	width: 20%;
 	margin: 10px auto 15px auto;
 	border-radius: 10px;
