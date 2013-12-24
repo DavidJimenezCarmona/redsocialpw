@@ -20,7 +20,6 @@ class Welcome extends CI_Controller {
 		{
 			$this->load->helper('form');
 			$this->load->view('headers');
-			$this->load->view('inicio');
 			echo "Usuario o contraseña erroneas";
 			$this->load->view('footer');
 		}

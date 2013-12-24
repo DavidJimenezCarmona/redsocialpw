@@ -54,13 +54,13 @@ body{
 
 .fuente_pie {
 	font-family: 'Chau Philomene One', sans-serif;
-	font-size: 20;
+	font-size: 15;
 	color: white;
 }
 
 #primer_bloque {
 	float: left;
-	margin-left: 20em;
+	margin-left: 25em;
 }
 
 #segundo_bloque {
