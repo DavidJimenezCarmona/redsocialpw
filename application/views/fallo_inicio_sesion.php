@@ -1,7 +1,7 @@
 <br>
 <div id="registro">
 	<p id="texto_registro"> ¿Aún no formas parte de FSD?<br><br>
-	<a id="enlace_registro" id="enlace_registro" href="application/views/nuevoUsuario.php">Registrarme</a></p>
+	<a id="enlace_registro" id="enlace_registro" href="../redsocialpw/application/views/nuevoUsuario.php">Registrarme</a></p>
 </div>
 <br><br><br><br><br><br>
 <h1>FriendShipDiary</h1>
