@@ -8,4 +8,4 @@
 		<link rel="shortcut icon" href="img/logo.png" />
 		<title>FriendShipDiary</title>
 	</head>
-	<body>
+	<body onload="linea_footer()">

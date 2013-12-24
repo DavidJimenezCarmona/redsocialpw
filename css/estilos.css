@@ -51,3 +51,29 @@ body{
 	font-size: 20;
 	color: black;
 }
+
+.fuente_pie {
+	font-family: 'Chau Philomene One', sans-serif;
+	font-size: 20;
+	color: white;
+}
+
+#primer_bloque {
+	float: left;
+	margin-left: 20em;
+}
+
+#segundo_bloque {
+	float: left;
+	margin-left: 10em;
+}
+
+#tercer_bloque {
+	float: left;
+	margin-left: 10em;
+}
+
+#cuarto_bloque {
+	float: left;
+	margin-left: 10em;
+}
