@@ -12,6 +12,14 @@ class Welcome extends CI_Controller {
 		$this->load->database(); 
 
 	}
+
+	public function registro() {
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->model('modelo_usuario');
+		$this->modelo_usuario->insertar_usuario();
+	}
+
 	public function login()
 	{
 		$this->load->helper('url');
