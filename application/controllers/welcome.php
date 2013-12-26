@@ -2,22 +2,27 @@
 
 class Welcome extends CI_Controller {
 
-	public function index()
-	{	
+	public function cargarInicio()
+	{
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->view('headers');
 		$this->load->view('inicio');
 		$this->load->view('footer');
-		$this->load->database(); 
-
 	}
 
-	public function registro() {
-		$this->load->helper('url');
+	public function index()
+	{	
+		$this->cargarInicio();
+		$this->load->database(); 
+	}
+
+	public function registro() 
+	{
 		$this->load->helper('form');
-		$this->load->model('modelo_usuario');
-		$this->modelo_usuario->insertar_usuario();
+		$this->load->view('headers');
+		$this->load->view('nuevoUsuario');
+		$this->load->view('footer');	
 	}
 
 	public function login()
@@ -26,16 +31,19 @@ class Welcome extends CI_Controller {
 		$this->load->model('modelo_usuario');
 		$usuario=$this->modelo_usuario->login($_POST['usuario'], $_POST['pass']);
 
-		if($usuario==0)
-		{
-			$this->load->helper('form');
-			$this->load->view('headers');
-			$this->load->view('fallo_inicio_sesion');
-			$this->load->view('footer');
-		}
+		if(isset($_POST['registrate']))
+			$this->registro();
 		else
 		{
-			//Cargar página principal
+			if($usuario==0)
+			{
+				$this->cargarInicio();
+				echo "Usuario o contraseñas incorrectas";
+			}
+			else
+			{
+				//Cargar página principal
+			}
 		}
 	}
 }
