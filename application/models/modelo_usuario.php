@@ -45,16 +45,16 @@ class modelo_usuario extends CI_Model {
         return 0;
     }
 
-    function insertar_usuario()
+    function insertar_usuario($usuario)
     {
-        $this->alias=$_POST['alias'];
-        $this->pass=md5($_POST['pass']);
-        $this->nombre=$_POST['nombre'];
-        $this->apellidos=$_POST['apellidos'];
-        $this->sexo=$_POST['sexo'];
-        $this->fecha_nacimiento=$_POST['fecha_nacimiento'];
-        $this->email=$_POST['email'];
-        $this->activo=$_POST['activo'];
+        $this->alias=$usuario['alias'];
+        $this->pass=md5($usuario['pass']);
+        $this->nombre=$usuario['nombre'];
+        $this->apellidos=$usuario['apellidos'];
+        $this->sexo=$usuario['sexo'];
+        $this->fecha_nacimiento=$usuario['fecha_nacimiento'];
+        $this->email=$usuario['email'];
+        $this->activo='activo';
 
         $this->db->insert('usuario', $this);
     }

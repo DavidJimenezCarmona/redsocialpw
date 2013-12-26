@@ -1,19 +1,15 @@
-<br><br><br><br><br><br>
 <h1>FriendShipDiary</h1>
-<img id="logo" src="<?php base_url();?>img/logo2.png"/>
-<br>
+<img id="logo" src="<?= base_url();?>/img/logo2.png"/>
 
-<div id="cajalog">
-	<? echo form_open('welcome/registro'); ?>
-	<p id="formulario_login">Alias:<br> <?= form_input('alias'); ?><br>
-	<br>Contraseña:<br> <?= form_password('pass'); ?>
-	<br>Repita la contraseña:<br> <?= form_password('pass'); ?>
-	<br>Nombre:<br> <?= form_password('nombre'); ?>
-	<br>Apellidos:<br> <?= form_password('apellidos'); ?>
-	<br>Sexo:<br> <?= form_password('sexo'); ?>
-	<br>Fecha de nacimiento:<br> <?= form_password('fecha_nacimiento'); ?>
-	<br>Repita la contraseña:<br> <?= form_password('email'); ?></p>
-	<? echo form_submit('Registrarme', 'Registrarme'); ?><br>
-	<br>
-	<a id="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
+<div id="cajareg">
+	<? echo form_open('welcome/nuevoUsuario'); ?>
+	<p id="formulario_login">Alias: <?= form_input('alias'); ?>
+	<br>Contraseña: <?= form_password('pass'); ?>
+	<br>Repita la contraseña: <?= form_password('pass'); ?>
+	<br>Nombre: <?= form_input('nombre'); ?>
+	<br>Apellidos: <?= form_input('apellidos'); ?>
+	<br>Sexo: <?= form_input('sexo'); ?>
+	<br>Fecha de nacimiento: <?= form_input('fecha_nacimiento'); ?>
+	<br>email: <?= form_input('email'); ?> <br> </p>
+	<p id="centrado"><?= form_submit('Registrarme', 'Registrarme'); ?></p>
 </div>

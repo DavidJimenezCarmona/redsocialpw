@@ -1,5 +1,5 @@
 <h1>FriendShipDiary</h1>
-<img id="logo" src="<?php base_url();?>img/logo2.png"/>
+<img id="logo" src="<?= base_url();?>img/logo2.png"/>
 <br>
 
 <div id="cajalog">
@@ -9,6 +9,6 @@
 	<? echo form_submit('Entrar', 'Entrar'); ?><br>
 	<br>
 	<a id="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
-	<p id="texto_registro"> ¿Aún no formas parte de FSD?
-	<? echo form_submit('registrate', 'Regístrate'); ?>
+	<p id="texto_registro"> ¿Aún no formas parte de FSD?</p>
+	<p id="centrado"><?= form_submit('registrate', 'Regístrate'); ?></p>
 </div>
