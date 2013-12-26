@@ -1,11 +1,5 @@
-<br>
-<div id="registro">
-	<p id="texto_registro"> ¿Aún no formas parte de FSD?<br><br>
-	<a id="enlace_registro" id="enlace_registro" href="../redsocialpw/application/views/nuevoUsuario.php">Registrarme</a></p>
-</div>
-<br><br><br><br><br><br>
 <h1>FriendShipDiary</h1>
-<img id="logo" src="../../img/logo2.png"/>
+<img id="logo" src="<?= base_url();?>img/logo2.png"/>
 <br>
 
 <div id="cajalog">
@@ -14,6 +8,9 @@
 	<br>Contraseña:<br> <?= form_password('pass'); ?></p>
 	<? echo form_submit('Entrar', 'Entrar'); ?><br>
 	<br>
+	<a id="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
+	<p id="texto_registro"> ¿Aún no formas parte de FSD?</p>
+	<p id="centrado"><?= form_submit('registrate', 'Regístrate'); ?></p>
 	<p id="mensaje_error"> Usuario y/o contraseña incorrectos.</p>
 	<a id="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
 </div>

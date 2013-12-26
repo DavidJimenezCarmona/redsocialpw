@@ -11,6 +11,15 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function cargarInicioErroneo()
+	{
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->view('headers');
+		$this->load->view('fallo_inicio_sesion');
+		$this->load->view('footer');
+	}
+
 	public function index()
 	{	
 		$this->cargarInicio();
@@ -59,8 +68,7 @@ class Welcome extends CI_Controller {
 		{
 			if($usuario==null)
 			{
-				$this->cargarInicio();
-				echo "Usuario o contraseñas incorrectas";
+				$this->cargarInicioErroneo();
 			}
 			else
 			{
