@@ -15,7 +15,7 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->view('headers');
-		$this->load->view('cuenta',$usuario);
+		$this->load->view('cuenta', $usuario);
 		$this->load->view('footer_comun');
 	}
 
@@ -47,7 +47,8 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->view('headers');
-		$this->load->view('nuevo_usuario_fallo');
+		$data['mensaje'] = "Los datos no son correctos, por favor complete todos los campos"; //NO HACE FALTA OTRA VISTA SOLO PARA ESO
+		$this->load->view('nuevoUsuario', $data);
 		$this->load->view('footer');
 	}
 
@@ -64,21 +65,27 @@ class Welcome extends CI_Controller {
 		$usuario['sexo']=$_POST['sexo'];
 		$usuario['email']=$_POST['email'];
 
-		//if(valid_email('email')) {
+		//Comprobamos que todos los campos se hayan insertdo
+		if ($usuario['alias']=="" || 
+			$usuario['pass']=="" || 
+			$usuario['nombre']=="" || 
+			$usuario['apellidos']=="" ||
+			$usuario['fecha_nacimiento']=="" ||
+			$usuario['sexo']=="" ||
+			$usuario['email']=="")
+		{
+			$this->registro_fallido();
+		}
+		else
+		{
+			//Cargamos el modelo usuario
+			$this->load->model('modelo_usuario');
+			//Llamamos al método del model que crea un nuevo usuario
+			$this->modelo_usuario->insertar_usuario($usuario);
+			//Cargamos la página de inicio pasándole el usuario que acabamos de insertar
+			$this->cargarCuenta($this->modelo_usuario->get_usuario_alias($usuario['alias']));
+		}
 
-		//Cargamos el modelo usuario
-		$this->load->model('modelo_usuario');
-		//Llamamos al método del model que crea un nuevo usuario
-		$this->modelo_usuario->insertar_usuario($usuario);
-
-		//Cargamos la página de inicio
-		$this->cargarCuenta($nombre);
-
-		//}
-
-		//else {
-			//$this->registro_fallido();
-		//}
 	}
 
 	public function login()
@@ -97,8 +104,8 @@ class Welcome extends CI_Controller {
 			}
 			else
 			{
-				$nombre['usuario'] = $_POST['usuario'];
-				$this->cargarCuenta($nombre);
+				//TENEMOS EN LA VARIABLE $USUARIO TODOS LOS DATOS DEL USUARIO, SE LO PASAMOS TODO A LA VISTA PARA PODERLOS USAR5
+				$this->cargarCuenta($usuario);
 			}
 		}
 	}

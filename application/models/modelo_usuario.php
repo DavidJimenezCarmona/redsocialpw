@@ -28,7 +28,16 @@ class modelo_usuario extends CI_Model {
         $this->db->where('id', $id); 
         $query = $this->db->get('usuario');
 
-        return $query->result();
+        return $query->row();
+    }
+
+    function get_usuario_alias($alias)
+    {
+        $this->db->select();
+        $this->db->where('alias', $alias); 
+        $query = $this->db->get('usuario');
+
+        return $query->row();
     }
 
     function login($alias, $pass)
@@ -51,10 +60,13 @@ class modelo_usuario extends CI_Model {
         $this->pass=md5($usuario['pass']);
         $this->nombre=$usuario['nombre'];
         $this->apellidos=$usuario['apellidos'];
-        $this->sexo=$usuario['sexo'];
+        if ($usuario['sexo']=='Hombre' || 'hombre' || 'HOMBRE')
+            $this->sexo=1; 
+        else
+            $this->sexo=0;
         $this->fecha_nacimiento=$usuario['fecha_nacimiento'];
         $this->email=$usuario['email'];
-        $this->activo='activo';
+        $this->activo=1; //1 activo, 0 inactivo
 
         $this->db->insert('usuario', $this);
     }

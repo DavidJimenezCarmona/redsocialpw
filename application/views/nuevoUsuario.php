@@ -12,4 +12,10 @@
 	<br>Fecha de nacimiento: <?= form_input('fecha_nacimiento'); ?>
 	<br>email: <?= form_input('email'); ?> <br> </p>
 	<p id="centrado"><?= form_submit('Registrarme', 'Registrarme'); ?></p>
+	<p id="mensaje_error">
+	<?
+		if(isset($mensaje))
+			echo $mensaje;
+	?>
+	</p>
 </div>

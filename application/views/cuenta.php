@@ -1,25 +1,30 @@
 <div class="derecha">
-	<? echo '<p id="saludo"> Bienvenido ' .$usuario. '</p>' ?>
+	<? 
+		if($sexo==0	) //Comprobamos si es Hombre (1) o Mujer (0)
+			echo '<p id="saludo"> Bienvenida ' . $alias . '</p>' ;
+		else
+			echo '<p id="saludo"> Bienvenido ' . $alias . '</p>' ;
+	?>
 	<p><?= form_submit('Mi Cuenta', 'Mi Cuenta'); ?></p>
 </div>
 
-<div id="avatar">
-	<img id="logo" src="<?= base_url();?>/img/avatar.jpg"/>
+<div id="avatar"> <? //Si no tiene foto (Hay que comprobarlo en su perfil), se carga una por defecto ?>
+	<img id="logo" src="<?= base_url();?>img/avatar.jpg"/>
 </div>
 
 <div id="primera_accion">
-	<?= form_submit('Amigos', 'Amigos'); ?>
+	<?= form_submit('amigos', 'Amigos'); ?>
 </div>
 
 <div id="segunda_accion">
-	<?= form_submit('Nueva actividad', 'Nueva actividad'); ?>
+	<?= form_submit('actividad', 'Nueva actividad'); ?>
 </div>
 
 <div id="tercera_accion">
-	<?= form_submit('Mis mensajes', 'Mis Mensajes'); ?>
+	<?= form_submit('mensajes', 'Mis Mensajes'); ?>
 </div>
 
 <div id="cuarta_accion">
-	<?= form_submit('Mis actividades', 'Mis actividades'); ?>
+	<?= form_submit('actividades', 'Mis actividades'); ?>
 </div>
 

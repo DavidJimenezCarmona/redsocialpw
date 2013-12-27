@@ -106,6 +106,7 @@ body{
 }
 
 #mensaje_error {
+	text-align: center;
 	color: red;
 }
 
