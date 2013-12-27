@@ -116,3 +116,34 @@ body{
 .derecha {
 	float: right;
 }
+
+#avatar {
+	float: left;
+}
+
+#primera_accion {
+	float: left;
+	margin-left: 5em;
+}
+
+#segunda_accion {
+	float: left;
+	margin-left: 5em;
+}
+
+#tercera_accion {
+	float: left;
+	margin-left: 5em;
+}
+
+#cuarta_accion {
+	float: left;
+	margin-left: 5em;
+}
+
+#bloque_centrado {
+	margin: 0 auto;
+	text-align: center;
+	position: absolute;
+	bottom: 1em;
+}

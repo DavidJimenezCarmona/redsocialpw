@@ -43,9 +43,19 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');	
 	}
 
+	public function registro_fallido() {
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->view('headers');
+		$this->load->view('nuevo_usuario_fallo');
+		$this->load->view('footer');
+	}
+
 	public function nuevoUsuario()
 	{
 		//Metemos en un array los datos a insertar en la bd
+		$this->load->helper('email');
+
 		$usuario['alias']=$_POST['alias'];
 		$usuario['pass']=$_POST['pass'];
 		$usuario['nombre']=$_POST['nombre'];
@@ -54,14 +64,21 @@ class Welcome extends CI_Controller {
 		$usuario['sexo']=$_POST['sexo'];
 		$usuario['email']=$_POST['email'];
 
+		//if(valid_email('email')) {
+
 		//Cargamos el modelo usuario
 		$this->load->model('modelo_usuario');
 		//Llamamos al método del model que crea un nuevo usuario
 		$this->modelo_usuario->insertar_usuario($usuario);
 
 		//Cargamos la página de inicio
-		$this->cargarCuenta();
-		echo "Se ha registrado correctamente";	
+		$this->cargarCuenta($nombre);
+
+		//}
+
+		//else {
+			//$this->registro_fallido();
+		//}
 	}
 
 	public function login()
