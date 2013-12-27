@@ -6,7 +6,7 @@
 	<br>Tipo: <?= form_input('tipo'); ?>
 	<br>Fecha de inicio: <?= form_input('fecha_ini'); ?>
 	<br>Fecha de fin: <?= form_input('fecha_fin'); ?>
-	<br>Ciudad: <?= form_input('ciudad'); ?>
+	<br>Provincia:  <?= form_dropdown('provincias', $provincias, 'large'); ?>
 	<br>Lugar: <?= form_input('lugar'); ?>
 	<br>Descripción: <?= form_input('descripcion'); ?>
 	<br>plazas: <?= form_input('plazas'); ?> <br> </p>

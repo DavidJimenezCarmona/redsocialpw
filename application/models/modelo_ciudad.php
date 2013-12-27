@@ -1,17 +1,24 @@
 <?
 class modelo_ciudad extends CI_Model {
 
-    $nombre="";
+
 
     function __construct()
     {
         // Llama al constructor de modelo
         parent::__construct();
+        $nombre="";
+    }
+
+    function get_provincias()
+    {
+        $query = $this->db->get('provincias');
+        return $query->result();
     }
     
     function get_ciudades()
     {
-        $query = $this->db->get('ciudad');
+        $query = $this->db->get('municipios');
         return $query->result();
     }
 

@@ -8,7 +8,7 @@
 		$usuario=$_SESSION['usuario'];
 
 		//Comprobamos si es Hombre (1) o Mujer (0)
-		if($usuario->sexo==0	) 
+		if($usuario->sexo==0) 
 			echo '<p id="saludo"> Bienvenida ' . $usuario->alias . '</p>' ;
 		else
 			echo '<p id="saludo"> Bienvenido ' . $usuario->alias . '</p>' ;
