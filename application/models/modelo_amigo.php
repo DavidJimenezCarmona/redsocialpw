@@ -1,17 +1,26 @@
 <?
 class modelo_amigo extends CI_Model {
 
-    $id_usuario1="";
-    $id_usuario2="";
-    $aceptado=0;
-
     function __construct()
     {
         // Llama al constructor de modelo
         parent::__construct();
+
+
+        $id_usuario1="";
+        $id_usuario2="";
+        $aceptado=0;
+    }
+
+    function get_amigos($id) {
+        $this->db->select('amigo');
+        $this->db->where('id', $id); 
+        $query = $this->db->get('amigo');
+
+        return $query->row();  
     }
     
-    function get_amigos()
+    function get_todos_amigos()
     {
         $query = $this->db->get('amigo');
         return $query->result();

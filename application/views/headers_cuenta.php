@@ -20,7 +20,7 @@
       <ul>
          <li class='has-sub'><a href='#'><span>Ver amigos</span></a>
          </li>
-         <li class='has-sub'><a href='<?= base_url(); ?>index.php/welcome/buscar_amigos'><span>Buscar amigos</span></a>
+         <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_amigos/buscar_amigos'><span>Buscar amigos</span></a>
          </li>
       </ul>
    </li>
