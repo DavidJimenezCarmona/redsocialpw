@@ -11,12 +11,26 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function RecursiveWrite($array) 
+	{
+	    foreach ($array as $vals) 
+	    {
+	        echo $vals['comment_content'] . "\n";
+	        RecursiveWrite($vals['child']);
+    	}
+	}
+
 	public function cargarCuenta($usuario) 
 	{
 		//Creamos la sesión con la cuenta del usuario
 		session_start();
 		$_SESSION['usuario'] = $usuario;
 
+		//Cargamos el modelo perfil
+		$this->load->model('modelo_perfil');
+		$perfil=$this->modelo_perfil->get_perfil($usuario->id);
+		$_SESSION['perfil'] = $perfil;
+		$this->RecursiveWrite($perfil);
 		$this->home();
 	}
 
@@ -25,6 +39,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->helper('form');
+		$this->load->library('table');
 		//Cargamos las vistas
 		$this->load->view('headers_cuenta');
 		$this->load->view('menu.html');

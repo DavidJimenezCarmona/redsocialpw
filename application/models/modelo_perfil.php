@@ -1,19 +1,29 @@
 <?
 class modelo_perfil extends CI_Model {
 
-    $id_usuario="";
-    $id_ciudad_residencia="";
-    $id_ciudad_nacimiento="";
-    $ocupacion="";
-    $centro_actividad="";
-    $foto="";
-
     function __construct()
     {
         // Llama al constructor de modelo
         parent::__construct();
+
+        $id_usuario="";
+        $id_ciudad_residencia="";
+        $id_ciudad_nacimiento="";
+        $ocupacion="";
+        $centro_actividad="";
+        $foto="";
     }
-    
+
+    function get_perfil($id)
+    {
+        $this->db->select();
+        $this->db->where('id_usuario', $id); 
+        $query = $this->db->get('perfil');
+
+        return $query->row();
+    }
+
+
     function get_perfiles()
     {
         $query = $this->db->get('perfil');

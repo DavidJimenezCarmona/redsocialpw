@@ -25,7 +25,7 @@ class modelo_usuario extends CI_Model {
     function get_usuario($id)
     {
         $this->db->select('usuario');
-        $this->db->where('id', $id); 
+        $this->db->where('id', $id);    
         $query = $this->db->get('usuario');
 
         return $query->row();
