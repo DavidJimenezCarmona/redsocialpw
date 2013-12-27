@@ -142,9 +142,14 @@ body{
 	margin-left: 5em;
 }
 
-#bloque_centrado {
+.pie {
+	width: 100%;
 	margin: 0 auto;
-	text-align: center;
+}
+
+.bloque_centrado {
+	float: left;
+	margin-left: 25em;
 	position: absolute;
 	bottom: 1em;
 }
