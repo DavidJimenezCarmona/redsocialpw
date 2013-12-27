@@ -1,5 +1,6 @@
 <div class="derecha">
 	<? 
+		//COMENTARIO DE PAPARRUCHAS
 		if($sexo==0	) //Comprobamos si es Hombre (1) o Mujer (0)
 			echo '<p id="saludo"> Bienvenida ' . $alias . '</p>' ;
 		else
