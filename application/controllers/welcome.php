@@ -26,9 +26,19 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('form');
 		//Cargamos las vistas
-		$this->load->view('headers');
+		$this->load->view('headers_cuenta');
 		$this->load->view('menu.html');
 		$this->load->view('cuenta');
+		$this->load->view('footer_comun');
+	}
+
+	public function buscar_amigos() {
+		$this->load->helper('url');
+		$this->load->helper('form');
+		//Cargamos las vistas
+		$this->load->view('headers_cuenta');
+		$this->load->view('menu.html');
+		$this->load->view('buscar_amigos');
 		$this->load->view('footer_comun');
 	}
 

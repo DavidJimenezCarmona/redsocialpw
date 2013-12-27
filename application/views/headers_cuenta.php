@@ -8,4 +8,4 @@
 		<link rel="shortcut icon" href="img/logo.png" />
 		<title>FriendShipDiary</title>
 	</head>
-	<body>
+	<body id="body_interior_cuenta">

@@ -1,0 +1,1 @@
+<? echo "vas a buscar amigos :D" ?>

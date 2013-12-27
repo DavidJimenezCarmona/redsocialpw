@@ -3,6 +3,11 @@ h1 {
 	color: white;
 	font-family: 'Bowlby One SC', cursive; 
 }
+
+#body_interior_cuenta {
+	background-color: white;
+}
+
 body{
 	background-color: #000066;
 }
@@ -77,7 +82,7 @@ body{
 #saludo {
 	font-family: 'Chau Philomene One', sans-serif;
 	font-size: 18;
-	color: white;
+	color: black;
 }
 
 #primer_bloque {
