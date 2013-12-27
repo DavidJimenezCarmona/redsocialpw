@@ -1,0 +1,3 @@
+<div>
+	<? echo $amigos?>
+</div>
