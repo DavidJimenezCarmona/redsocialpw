@@ -11,13 +11,27 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function cargarCuenta($usuario) {
+	public function cargarCuenta($usuario) 
+	{
+		//Creamos la sesión con la cuenta del usuario
+		session_start();
+		$_SESSION['usuario'] = $usuario;
+
+		$this->home();
+	}
+
+	//Carga la página de inicio
+	public function home() 
+	{
 		$this->load->helper('url');
 		$this->load->helper('form');
+		//Cargamos las vistas
 		$this->load->view('headers');
-		$this->load->view('cuenta', $usuario);
+		$this->load->view('menu.html');
+		$this->load->view('cuenta');
 		$this->load->view('footer_comun');
 	}
+
 
 	public function cargarInicioErroneo()
 	{

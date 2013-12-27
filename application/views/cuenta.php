@@ -1,10 +1,17 @@
 <div class="derecha">
 	<? 
-		//COMENTARIO DE PAPARRUCHAS
-		if($sexo==0	) //Comprobamos si es Hombre (1) o Mujer (0)
-			echo '<p id="saludo"> Bienvenida ' . $alias . '</p>' ;
+		//Propagamos la sesión
+		if(!isset($_SESSION)) 
+	        session_start(); 
+
+	    //Creamos el objeto usuario
+		$usuario=$_SESSION['usuario'];
+
+		//Comprobamos si es Hombre (1) o Mujer (0)
+		if($usuario->sexo==0	) 
+			echo '<p id="saludo"> Bienvenida ' . $usuario->alias . '</p>' ;
 		else
-			echo '<p id="saludo"> Bienvenido ' . $alias . '</p>' ;
+			echo '<p id="saludo"> Bienvenido ' . $usuario->alias . '</p>' ;
 	?>
 	<p><?= form_submit('Mi Cuenta', 'Mi Cuenta'); ?></p>
 </div>
