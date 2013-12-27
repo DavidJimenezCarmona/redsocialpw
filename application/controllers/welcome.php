@@ -11,6 +11,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function cargarCuenta($usuario) {
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->view('headers');
+		$this->load->view('cuenta',$usuario);
+		$this->load->view('footer_comun');
+	}
+
 	public function cargarInicioErroneo()
 	{
 		$this->load->helper('url');
@@ -52,7 +60,7 @@ class Welcome extends CI_Controller {
 		$this->modelo_usuario->insertar_usuario($usuario);
 
 		//Cargamos la página de inicio
-		$this->cargarInicio();
+		$this->cargarCuenta();
 		echo "Se ha registrado correctamente";	
 	}
 
@@ -72,8 +80,8 @@ class Welcome extends CI_Controller {
 			}
 			else
 			{
-				//Cargar página principal
-				echo "Has entrado";
+				$nombre['usuario'] = $_POST['usuario'];
+				$this->cargarCuenta($nombre);
 			}
 		}
 	}
