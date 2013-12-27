@@ -17,5 +17,10 @@ class controlador_actividad extends CI_Controller
 		$this->load->view('nueva_actividad');
 		$this->load->view('footer_comun');
 	}
+
+	public function guardarActividad()
+	{
+		echo "No se ha hecho na, pero tenemos pensado hacerlo";
+	}
 }
 ?>
