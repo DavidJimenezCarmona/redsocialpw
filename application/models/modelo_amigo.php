@@ -38,10 +38,16 @@ class modelo_amigo extends CI_Model {
 
     function get_amigos($id) {
 
-        $query2 = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario2 FROM amigo WHERE id_usuario1 = '$id' AND aceptado = 0)
+        $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario2 FROM amigo WHERE id_usuario1 = '$id' AND aceptado = 0)
             OR (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 0)");
 
-        return $query2->result_array();  
+        return $query->result_array();  
+    }
+
+    function get_peticiones($id) {
+        $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 1)");
+
+        return $query->result_array();  
     }
     
     function get_todos_amigos()
@@ -84,6 +90,11 @@ class modelo_amigo extends CI_Model {
             return 0;
         }
         return 1;
+    }
+
+    function aceptar_peticion($id1, $id2) {
+
+        $this->db->query("UPDATE amigo SET aceptado = 0 WHERE (aceptado = 1 AND id_usuario1 = '$id1' AND id_usuario2 = '$id2') ");
     }
 
 }

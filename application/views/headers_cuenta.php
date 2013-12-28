@@ -45,14 +45,14 @@
 
 
 <? if (isset($notificaciones) && $notificaciones == 0) {
-   echo "<li class=\"derecha\"><a href='#'><img class=\"imagen_peque\" src=\"../../img/notificaciones.png\"></a></li>
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=\"../../img/notificaciones.png\"></a></li>
    </ul>
    </div>
    <br><br>";
 }
 
 else {
-   echo "<li class=\"derecha\"><a href='#'><img class=\"imagen_peque\" src=\"../../img/sin_Notificaciones.png\"></a></li>
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=\"../../img/sin_Notificaciones.png\"></a></li>
    </ul>
    </div>
    <br><br>";  

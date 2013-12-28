@@ -104,5 +104,42 @@ class controlador_amigos extends CI_Controller {
 		$this->load->view('footer_comun');
 	}
 
+	public function mostrar_peticiones() {
+		if(!isset($_SESSION)) {
+			session_start();
+		}
+
+
+		$this->load->model('modelo_amigo');
+		$peticiones = $this->modelo_amigo->get_peticiones($_SESSION['usuario']->id);
+
+		if($peticiones == null) {
+			$data['mensaje'] = "No tiene actualmente peticiones de amistad disponibles.";
+		}
+
+		else {
+			$data['peticiones'] = $peticiones;
+		}
+
+		$this->load->helper('url');
+		$this->load->helper('form');
+		//Cargamos las vistas
+		$this->load->view('headers_cuenta');
+		$this->load->view('mostrar_peticiones',$data);
+		$this->load->view('footer_comun');
+	}
+
+	public function aceptar_peticion($id1, $id2) {
+		if(!isset($_SESSION)) {
+			session_start();
+		}
+
+		$this->load->model('modelo_amigo');
+		$peticiones = $this->modelo_amigo->aceptar_peticion($id1, $id2);
+
+		echo "La petición se ha aceptado correctamente.";
+
+	}
+
 
 }
