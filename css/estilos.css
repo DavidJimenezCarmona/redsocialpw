@@ -3,6 +3,24 @@ h1 {
 	color: white;
 	font-family: 'Bowlby One SC', cursive; 
 }
+h2{
+  text-align:center;
+}
+table
+{
+  color: white;
+}
+
+#izda{
+  text-align: left;
+}
+#dcha{
+  text-align: rigth;
+}
+td
+{
+padding:5px;
+}
 
 #body_interior_cuenta {
 	background-color: white;
