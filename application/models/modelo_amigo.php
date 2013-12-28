@@ -73,5 +73,19 @@ class modelo_amigo extends CI_Model {
         $this->db->delete('amigo', $this, array('id' => $_POST['id']));
     }
 
+    function notificaciones_pendientes($id) {
+        $this->db->select();
+        $this->db->where('id_usuario1', $id); 
+        $this->db->or_where('id_usuario2', $id);
+        $this->db->where('aceptado',1);
+        $query = $this->db->get('amigo');
+
+        if ($query->num_rows() > 0)
+        {
+            return 0;
+        }
+        return 1;
+    }
+
 }
 ?>

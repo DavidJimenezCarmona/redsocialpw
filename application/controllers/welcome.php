@@ -27,13 +27,35 @@ class Welcome extends CI_Controller {
 	//Carga la página de inicio
 	public function home() 
 	{
+		if(!isset($_SESSION)) {
+			session_start();
+		}
+		
 		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->load->library('table');
-		//Cargamos las vistas
-		$this->load->view('headers_cuenta');
-		$this->load->view('cuenta');
-		$this->load->view('footer_comun');
+		$this->load->model('modelo_amigo');
+		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
+
+		if($notificaciones == 0) {  //Hay notificaciones pendientes
+			$data["notificaciones"]= 0;
+			$this->load->helper('url');
+			$this->load->helper('form');
+			$this->load->library('table');
+			//Cargamos las vistas
+			$this->load->view('headers_cuenta',$data);
+			$this->load->view('cuenta');
+			$this->load->view('footer_comun');
+		}
+
+		else {
+			$data["notificaciones"]= 1;
+			$this->load->helper('url');
+			$this->load->helper('form');
+			$this->load->library('table');
+			//Cargamos las vistas
+			$this->load->view('headers_cuenta',$data);
+			$this->load->view('cuenta');
+			$this->load->view('footer_comun');
+		}
 	}
 
 	public function cargarInicioErroneo()

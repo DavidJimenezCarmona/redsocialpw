@@ -9,11 +9,7 @@
 		<title>FriendShipDiary</title>
 	</head>
 
-
-
-
-
-<div id='cssmenu'>
+   <div id='cssmenu'>
 <ul>
    <li class='active'><a href='<?= base_url(); ?>index.php/welcome/home'><span>Home</span></a></li>
    <li class='has-sub'><a href='#'><span>Amigos</span></a>
@@ -45,8 +41,26 @@
    </li>
    <li><a href='#'><span>Acerca de...</span></a></li>
    <li class='last'><a href='#'><span>Contacta con nosotros</span></a></li>
-</ul>
-</div>
-<br><br>
+
+
+
+<? if (isset($notificaciones) && $notificaciones == 0) {
+   echo "<li class=\"derecha\"><a href='#'><img class=\"imagen_peque\" src=\"../../img/notificaciones.png\"></a></li>
+   </ul>
+   </div>
+   <br><br>";
+}
+
+else {
+   echo "<li class=\"derecha\"><a href='#'><img class=\"imagen_peque\" src=\"../../img/sin_Notificaciones.png\"></a></li>
+   </ul>
+   </div>
+   <br><br>";  
+}
+
+?>
+
+
+
 
 <body id="body_interior_cuenta">
