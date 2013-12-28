@@ -124,7 +124,13 @@ body{
 	color: black;
 }
 
-.fuente_pie {
+#fuente_pie {
+	font-family: 'Chau Philomene One', sans-serif;
+	font-size: 15;
+	color: white;
+}
+
+#fuente_pie_comun {
 	font-family: 'Chau Philomene One', sans-serif;
 	font-size: 15;
 	color: black;
