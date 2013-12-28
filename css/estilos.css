@@ -188,6 +188,10 @@ body{
 	text-align: center;
 	color: red;
 }
+#mensaje {
+  text-align: center;
+  color: #00FF00;
+}
 
 #enlace_registro {
 	color: red;

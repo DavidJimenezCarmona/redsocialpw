@@ -67,6 +67,11 @@ for($i=0;$i<100;$i++) $anyo[$i]=($i+2013);
 		<tr>
 			<p id="mensaje_error">
 			<?
+				if(isset($mensaje_error))
+					echo $mensaje_error;
+			?>
+			<p id="mensaje">
+			<?
 				if(isset($mensaje))
 					echo $mensaje;
 			?>
