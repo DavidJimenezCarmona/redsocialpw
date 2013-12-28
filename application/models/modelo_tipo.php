@@ -17,6 +17,14 @@ class modelo_tipo extends CI_Model {
         return $data;
     }
 
+    function get_tipo($id)
+    {
+        $query = $this->db->select()
+                          ->where('id',$id)
+                          ->get('tipo');
+        return $query->row();    
+    }
+
     function insertar_tipo()
     {
         $this->nombre=$_POST['nombre'];

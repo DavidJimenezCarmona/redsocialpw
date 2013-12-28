@@ -67,40 +67,22 @@ class controlador_actividad extends CI_Controller
     	}
 	}
 
-	public function verActividades()
+	public function verActividades($data=null)
 	{
 		//Pedimos al modelo las actividades del usuario
-		$actividades=$this->modelo_usuario_actividad->get_actividades($_SESSION['usuario']->id);
+		$data['actividades']=$this->modelo_usuario_actividad->get_actividades($_SESSION['usuario']->id);
 
-		//Cabecera de la tabla
-		$datos[0]['nombre']='nombre';
-		$datos[0]['id_tipo']='id_tipo';
-		$datos[0]['fecha_inicio']='fecha_inicio';
-		$datos[0]['fecha_fin']='fecha_fin';
-		$datos[0]['id_ciudad']='id_ciudad';
-		$datos[0]['lugar']='lugar';
-		$datos[0]['descripcion']='descripcion';
-		$datos[0]['plazas']='plazas';
-
-		//Resto de datos de la tabla
-		foreach ($actividades as $i) 
-		{
-			$datos[$i->id]['nombre']=$i->nombre;
-			$datos[$i->id]['id_tipo']=$i->id_tipo;
-			$datos[$i->id]['fecha_inicio']=$i->fecha_inicio;
-			$datos[$i->id]['fecha_fin']=$i->fecha_fin;
-			$datos[$i->id]['id_ciudad']=$i->id_ciudad;
-			$datos[$i->id]['lugar']=$i->lugar;
-			$datos[$i->id]['descripcion']=$i->descripcion;
-			$datos[$i->id]['plazas']=$i->plazas;
-		}
-
-		//Creamos la tabla y se la pasamos a la vista
-		$data['tabla']=$this->table->generate($datos);
 		$this->load->view('headers_cuenta');
 		$this->load->view('ver_actividades', $data);
 		
 
+	}
+
+	public function noAsistir()
+	{
+		$this->modelo_usuario_actividad->borrar_usuario_actividad($_SESSION['usuario']->id, $_REQUEST["actividad"]);
+		$data['mensaje'] = "Has decidido no ir a una actividad";
+		$this->verActividades($data);
 	}
 }
 ?>

@@ -33,6 +33,14 @@ class modelo_ciudad extends CI_Model {
         return $data;
     }
 
+    function get_ciudad($id)
+    {
+        $query = $this->db->select()
+                          ->where('id_municipio',$id)
+                          ->get('municipios');
+        return $query->row();    
+    }
+
     function insertar_ciudad()
     {
         $this->nombre=$_POST['nombre'];

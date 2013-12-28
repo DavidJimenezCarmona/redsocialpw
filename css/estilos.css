@@ -253,12 +253,51 @@ body{
 }
 
 .imagen_peque {
-  height: 20px;
-  width: 20px;
+  height: 1.5em;
+  width: 1.5em;
 }
 
 .derecha {
   float: right;
+}
+
+#imagenActividad
+{
+  height: 8em;
+  width: 8em;
+  float:left;
+  clear:left;
+  margin: 10px 30 10px 10px !important;
+  margin: 10px 30 10px 5px;
+  padding: 0px;
+}
+
+#actividad
+{
+  margin:0 auto 0 auto;
+  text-align: center;
+  width: 40%;
+  background: #3b5998;
+  border-radius: 10px;
+  color: white;
+}
+
+#botonNoir
+{
+  display: block;
+  width: 115px;
+  height: 25px;
+  background: #4E9CAF;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+#tituloActividad
+{
+  color:#3b5998;
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------*/

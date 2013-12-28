@@ -46,9 +46,11 @@ class modelo_usuario_actividad extends CI_Model {
         $this->db->update('usuario_actividad', $this, array('id' => $_POST['id']));
     }
 
-    function borrar_usuario_actividad()
-    {
-        $this->db->delete('usuario_actividad', $this, array('id' => $_POST['id']));
+    function borrar_usuario_actividad($id_usuario, $id_actividad)
+    {   
+        $this->db->where('id_usuario', $id_usuario);
+        $this->db->where('id_actividad', $id_actividad);  
+        $this->db->delete('usuario_actividad'); 
     }
 
 }

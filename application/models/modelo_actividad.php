@@ -27,7 +27,17 @@ class modelo_actividad extends CI_Model {
         $query = $this->db->select()
                           ->where('id',$id)  
                           ->get('actividad');
-        return $query->row();
+        $data = $query->row();
+
+        $this->load->model('modelo_tipo');
+        $tipo=$this->modelo_tipo->get_tipo($data->id_tipo);
+        $data->tipo=$tipo;
+
+        $this->load->model('modelo_ciudad');
+        $ciudad=$this->modelo_ciudad->get_ciudad($data->id_ciudad);
+        $data->ciudad=$ciudad;
+
+        return $data;
     }
 
     function insertar_actividad($data)

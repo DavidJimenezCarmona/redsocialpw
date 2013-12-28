@@ -33,7 +33,7 @@ for($i=0;$i<100;$i++) $anyo[$i]=($i+2013);
 	<h2>Nueva actividad</h2>
 	<? echo form_open('controlador_actividad/guardarActividad'); ?>
 	<p id="formulario_login">
-	<table>
+	<table id="tablaregistro">
 		<tr>
 			<td id="izda">Nombre de la actividad</td><td id="dcha"> <?= form_input('nombre'); ?></td>
 		</tr>
