@@ -18,7 +18,7 @@
    <li class='active'><a href='<?= base_url(); ?>index.php/welcome/home'><span>Home</span></a></li>
    <li class='has-sub'><a href='#'><span>Amigos</span></a>
       <ul>
-         <li class='has-sub'><a href='#'><span>Ver amigos</span></a>
+         <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_amigos/mostrar_amigos'><span>Ver amigos</span></a>
          </li>
          <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_amigos/buscar_amigos'><span>Buscar amigos</span></a>
          </li>

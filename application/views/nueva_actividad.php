@@ -1,4 +1,4 @@
-<div id="cajaAct">
+<div class="cajaAct">
 	Nueva actividad
 	<? echo form_open('controlador_actividad/guardarActividad'); ?>
 	<p id="formulario_login">

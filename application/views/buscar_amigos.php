@@ -1,5 +1,5 @@
 
-<div class="bloque_centrado_arriba bloque_busqueda">
+<div class="bloque_centrado_arriba ficha">
 	<? echo form_open('controlador_amigos/filtrar_usuarios'); ?>
 	<p id="formulario_busqueda">Nombre: <?= form_input('nombre'); ?>
 	<p id="centrado"><?= form_submit('Buscar usuarios', 'Buscar usuarios'); ?></p>

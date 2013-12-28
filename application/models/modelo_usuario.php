@@ -37,7 +37,9 @@ class modelo_usuario extends CI_Model {
         $this->db->where('alias', $alias); 
         $query = $this->db->get('usuario');
 
-        return $query->row();
+        $result = $query->result();
+        //return new modelo_usuario($row->nombre, $row->sexo, $row->alias);
+        return $result;
     }
 
     function login($alias, $pass)

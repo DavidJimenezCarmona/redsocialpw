@@ -12,12 +12,36 @@ class modelo_amigo extends CI_Model {
         $aceptado=0;
     }
 
-    function get_amigos($id) {
-        $this->db->select('amigo');
-        $this->db->where('id', $id); 
+    function es_amigo($id1, $id2) {
+        $this->db->select();
+        $this->db->where('id_usuario1',$id1);
+        $this->db->where('id_usuario2',$id2);
         $query = $this->db->get('amigo');
 
-        return $query->row();  
+        if ($query->num_rows() == 0)
+        {
+            $this->db->select();
+            $this->db->where('id_usuario1',$id2);
+            $this->db->where('id_usuario2',$id1);
+            $query = $this->db->get('amigo');
+            
+        }
+
+        if($query->num_rows() == 0) {
+            return 1; //Es falso
+        }
+
+        else {
+            return 0; //Es verdad
+        }
+    }
+
+    function get_amigos($id) {
+
+        $query2 = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario2 FROM amigo WHERE id_usuario1 = '$id' AND aceptado = 0)
+            OR (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 0)");
+
+        return $query2->result_array();  
     }
     
     function get_todos_amigos()
@@ -26,11 +50,13 @@ class modelo_amigo extends CI_Model {
         return $query->result();
     }
 
-    function insertar_amigo()
+    function insertar_amigo($id1, $id2)
     {
-        $this->id_usuario1=$_POST['id_usuario1'];
-        $this->id_usuario2=$_POST['id_usuario2'];
-        $this->aceptado=$_POST['aceptado'];
+        $this->id_usuario1=$id1;
+        $this->id_usuario2=$id2;
+        $this->aceptado=1; //1 es FALSO que no te ha aceptado
+
+        $this->db->insert('amigo', $this);
     }
 
     function modificar_amigo()
