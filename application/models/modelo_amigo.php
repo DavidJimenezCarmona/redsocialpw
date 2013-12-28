@@ -74,9 +74,8 @@ class modelo_amigo extends CI_Model {
     }
 
     function notificaciones_pendientes($id) {
-        $this->db->select();
-        $this->db->where('id_usuario1', $id); 
-        $this->db->or_where('id_usuario2', $id);
+        $this->db->select(); 
+        $this->db->where('id_usuario2', $id); //Es receptor de la petición
         $this->db->where('aceptado',1);
         $query = $this->db->get('amigo');
 
