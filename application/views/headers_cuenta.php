@@ -24,7 +24,7 @@
       <ul>
          <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_actividad/nuevaActividad'><span>Crear nueva actividad</span></a>
          </li>
-         <li class='has-sub'><a href='#'><span>Ver actividades</span></a>
+         <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_actividad/verActividades'><span>Ver actividades</span></a>
          </li>
          <li class='has-sub'><a href='#'><span>Buscar actividades</span></a>
          </li>

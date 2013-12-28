@@ -22,6 +22,14 @@ class modelo_actividad extends CI_Model {
         return $query->result();
     }
 
+    function get_actividad($id)
+    {
+        $query = $this->db->select()
+                          ->where('id',$id)  
+                          ->get('actividad');
+        return $query->row();
+    }
+
     function insertar_actividad($data)
     {
         $this->nombre=$data['nombre'];

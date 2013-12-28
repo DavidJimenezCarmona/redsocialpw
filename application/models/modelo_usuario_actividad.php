@@ -1,13 +1,13 @@
 <?
 class modelo_usuario_actividad extends CI_Model {
 
-    $id_actividad;
-    $id_usuario;
-
     function __construct()
     {
         // Llama al constructor de modelo
         parent::__construct();
+
+        $id_actividad;
+        $id_usuario;
     }
     
     function get_usuarios_actividades()
@@ -16,10 +16,24 @@ class modelo_usuario_actividad extends CI_Model {
         return $query->result();
     }
 
-    function insertar_usuario_actividad()
+    function get_actividades($id)
     {
-        $this->id_actividad=$_POST['id_actividad'];
-        $this->id_usuario=$_POST['id_usuario'];
+        $query = $this->db->select('id_actividad')
+                          ->where('id_usuario',$id)
+                          ->get('usuario_actividad');
+
+        $this->load->model('modelo_actividad');
+
+        foreach ($query->result() as $id_actividad) 
+            $data[$id_actividad->id_actividad] = $this->modelo_actividad->get_actividad($id_actividad->id_actividad);
+
+        return $data;
+    }
+
+    function insertar_usuario_actividad($data)
+    {
+        $this->id_actividad=$data['id_actividad'];
+        $this->id_usuario=$data['id_usuario'];
 
         $this->db->insert('usuario_actividad', $this);
     }
