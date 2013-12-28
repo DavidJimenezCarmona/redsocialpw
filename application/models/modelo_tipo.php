@@ -1,8 +1,6 @@
 <?
 class modelo_tipo extends CI_Model {
 
-    $nombre="";
-
     function __construct()
     {
         // Llama al constructor de modelo
@@ -12,7 +10,11 @@ class modelo_tipo extends CI_Model {
     function get_tipos()
     {
         $query = $this->db->get('tipo');
-        return $query->result();
+        foreach ($query->result() as $reg) 
+        {
+            $data[$reg->id] = $reg->nombre;
+        }
+        return $data;
     }
 
     function insertar_tipo()

@@ -12,14 +12,25 @@ class modelo_ciudad extends CI_Model {
 
     function get_provincias()
     {
-        $query = $this->db->get('provincias');
-        return $query->result();
+        $query = $this->db->query("SELECT id_provincia, provincia FROM provincias");
+        foreach ($query->result() as $reg) 
+        {
+            $data[$reg->id_provincia] = $reg->provincia;
+        }
+        return $data;
     }
     
-    function get_ciudades()
+    function get_ciudades($codprov)
     {
-        $query = $this->db->get('municipios');
-        return $query->result();
+        $query = $this->db->select('id_municipio,nombre')
+                          ->where('id_provincia', $codprov)
+                          ->get('municipios');                 
+
+        foreach ($query->result() as $reg) 
+        {
+            $data[$reg->id_municipio] = $reg->nombre;
+        }
+        return $data;
     }
 
     function insertar_ciudad()

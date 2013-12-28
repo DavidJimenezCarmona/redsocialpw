@@ -179,6 +179,15 @@ if ( ! function_exists('form_input'))
 		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
 	}
 }
+if ( ! function_exists('form_input_numeric'))
+{
+	function form_input_numeric($data = '', $value = '', $extra = '')
+	{
+		$defaults = array('type' => 'number', 'name' => (( ! is_array($data)) ? $data : ''), 'value' => $value);
+
+		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
+	}
+}
 
 // ------------------------------------------------------------------------
 
