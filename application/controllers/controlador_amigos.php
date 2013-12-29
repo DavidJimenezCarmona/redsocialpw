@@ -2,143 +2,116 @@
 
 class controlador_amigos extends CI_Controller {
 
+	function __construct()
+    {
+        parent::__construct(); 
 
-	public function buscar_amigos() {
-		$this->load->helper('url');
-		$this->load->helper('form');
+        //Propagamos la sesión
+		if(!isset($_SESSION)) session_start(); 
+
+        $this->load->model('modelo_usuario');
+        $this->load->model('modelo_amigo');
+    }
+
+	public function buscar_amigos() 
+	{
 		//Cargamos las vistas
 		$this->load->view('headers_cuenta');
 		$this->load->view('buscar_amigos');
 		$this->load->view('footer_comun');
 	}
 
-	public function filtrar_usuarios() {
-
+	public function filtrar_usuarios() 
+	{
 		$usuario['nombre']=$_POST['nombre'];
 
-		$this->load->model('modelo_usuario');
-
-		if(!isset($_SESSION)) {
-				session_start();
-		}
-
-
-		if($usuario['nombre'] != '') {
-
+		if($usuario['nombre'] != '') 
+		{
 			$amigos=$this->modelo_usuario->get_usuario_alias($usuario['nombre']);
 
-			if($amigos == null) {
+			if($amigos == null) 
+			{
 				$data['mensaje'] = "No hay coincidencias con la búsqueda realizada";
 			}
-
-			else {
+			else 
+			{
 				$data['amigos'] = $amigos;
 			}
 
 			$this->mostrar_usuarios($data);
-
 		}
-
-		else {
-
+		else 
+		{
 			$data['amigos']=$this->modelo_usuario->get_usuarios();
 			$this->mostrar_usuarios($data);
 		}
 	}
 
-	public function mostrar_usuarios($data) {
-		$this->load->helper('url');
-		$this->load->helper('form');
+	public function mostrar_usuarios($data) 
+	{
 		//Cargamos las vistas
 		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_usuarios',$data);
 		$this->load->view('footer_comun');
 	}
 
-	public function agregar_amigo($id) {
-		if(!isset($_SESSION)) {
-			session_start();
-		}
-
-
-		$this->load->model('modelo_amigo');
-
-		if($this->modelo_amigo->es_amigo($_SESSION['usuario']->id, $id) == 0) {
-
+	public function agregar_amigo($id) 
+	{
+		if($this->modelo_amigo->es_amigo($_SESSION['usuario']->id, $id) == 0) 
+		{
 			echo "No puedes enviarle mas peticiones de amistad a este usuario";
-
 		}
-
-		else {
-
+		else 
+		{
 			$this->modelo_amigo->insertar_amigo($_SESSION['usuario']->id,$id);
-
 			echo "Amigo agregado con exito.";
-
 		}
-
 	}
 
-	public function mostrar_amigos() {
-		if(!isset($_SESSION)) {
-			session_start();
-		}
-
-
-		$this->load->model('modelo_amigo');
+	public function mostrar_amigos() 
+	{
 		$amigos = $this->modelo_amigo->get_amigos($_SESSION['usuario']->id);
 
-		if($amigos == null) {
-			$data['mensaje'] = "No hay amigos que mostrar actualmente. Si has añadido un amigo primero éste tiene que aceptar tu petición de amistad para que aparezca en esta lista.";
+		if($amigos == null) 
+		{
+			$data['mensaje'] = "No hay amigos que mostrar actualmente. 
+								Si has añadido un amigo primero, éste, 
+								tiene que aceptar tu petición de amistad para que aparezca en esta lista.";
 		}
-
-		else {
+		else 
+		{
 			$data['amigos'] = $amigos;
 		}
-
-		$this->load->helper('url');
-		$this->load->helper('form');
+		
 		//Cargamos las vistas
 		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_amigos',$data);
 		$this->load->view('footer_comun');
 	}
 
-	public function mostrar_peticiones() {
-		if(!isset($_SESSION)) {
-			session_start();
-		}
-
-
-		$this->load->model('modelo_amigo');
+	public function mostrar_peticiones() 
+	{
 		$peticiones = $this->modelo_amigo->get_peticiones($_SESSION['usuario']->id);
 
-		if($peticiones == null) {
+		if($peticiones == null) 
+		{
 			$data['mensaje'] = "No tiene actualmente peticiones de amistad disponibles.";
 		}
-
-		else {
+		else 
+		{
 			$data['peticiones'] = $peticiones;
 		}
 
-		$this->load->helper('url');
-		$this->load->helper('form');
 		//Cargamos las vistas
 		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_peticiones',$data);
 		$this->load->view('footer_comun');
 	}
 
-	public function aceptar_peticion($id1, $id2) {
-		if(!isset($_SESSION)) {
-			session_start();
-		}
-
-		$this->load->model('modelo_amigo');
+	public function aceptar_peticion($id1, $id2) 
+	{
 		$peticiones = $this->modelo_amigo->aceptar_peticion($id1, $id2);
-
 		echo "La petición se ha aceptado correctamente.";
-
 	}
 
 
