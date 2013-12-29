@@ -33,7 +33,7 @@
    </li>
    <li class='has-sub'><a href='#'><span>Mensajes</span></a>
       <ul>
-         <li class='has-sub'><a href='#'><span>Bandeja de entrada</span></a>
+         <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_mensajes/bandejaEntrada'><span>Bandeja de entrada</span></a>
          </li>
          <li class='has-sub'><a href='#'><span>Nuevo</span></a>
          </li>
@@ -44,14 +44,14 @@
 
 
 <? if (isset($notificaciones) && $notificaciones == 0) {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=\"../../img/notificaciones.png\"></a></li>
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=".base_url()."img/notificaciones.png></a></li>
    </ul>
    </div>
    <br><br>";
 }
 
 else {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=\"../../img/sin_Notificaciones.png\"></a></li>
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=".base_url()."img/sin_notificaciones.png></a></li>
    </ul>
    </div>
    <br><br>";  

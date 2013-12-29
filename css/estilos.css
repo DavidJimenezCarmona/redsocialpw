@@ -295,11 +295,82 @@ body{
   font-weight: bold;
 }
 
+#botonMensaje
+{
+  display: block;
+  width: 80px;
+  height: 20px;
+  background: #4E9CAF;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
 #tituloActividad
 {
   color:#3b5998;
 }
 
+#tablaMensajes
+{
+  color: #3b5998;
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+#cabeceraTablaMensajes
+{
+  background: #3b5998;
+  color: white;
+}
+
+#filaTablaMensajes
+{
+  border-bottom: navy solid thin;
+  border-top: navy solid thin;
+  border-left: none;
+  border-right: none;
+}
+
+#filaTablaMensajesNoVisto
+{
+  background: #96DF72;
+  border-bottom: navy solid thin;
+  border-top: navy solid thin;
+  border-left: none;
+  border-right: none;
+}
+
+#divTablaMensajes
+{
+  text-align: center;
+  margin: auto;
+}
+
+#cajaMensaje
+{
+  margin: auto;
+  border: 0.15em solid #3b5998;
+  border-radius: 0.2em;
+  width: 100%; 
+  padding: 1em;
+}
+
+#divMensaje
+{
+  margin: auto;
+  width: 50%; 
+}
+
+#tituloMensaje
+{
+  text-align: left;
+  color: #3b5998;
+  padding: 0px;
+}
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------CSS DEL MENÚ-----------------------------------------------------------------------------*/
 

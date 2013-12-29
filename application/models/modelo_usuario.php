@@ -22,6 +22,15 @@ class modelo_usuario extends CI_Model {
         return $query->result();
     }
 
+    function get_alias($id)
+    {
+        $this->db->select('alias');
+        $this->db->where('id', $id);    
+        $query = $this->db->get('usuario');
+
+        return $query->row();
+    }
+
     function get_usuario($id)
     {
         $this->db->select('usuario');
@@ -37,8 +46,7 @@ class modelo_usuario extends CI_Model {
         $this->db->where('alias', $alias); 
         $query = $this->db->get('usuario');
 
-        $result = $query->result();
-        //return new modelo_usuario($row->nombre, $row->sexo, $row->alias);
+        $result = $query->result();;
         return $result;
     }
 
