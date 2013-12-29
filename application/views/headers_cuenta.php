@@ -26,7 +26,7 @@
          </li>
          <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_actividad/verActividades'><span>Ver actividades</span></a>
          </li>
-         <li class='has-sub'><a href='#'><span>Buscar actividades</span></a>
+         <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_actividad/buscarActividades'><span>Buscar actividades</span></a>
          </li>
 
       </ul>
@@ -41,7 +41,6 @@
    </li>
    <li><a href='#'><span>Acerca de...</span></a></li>
    <li class='last'><a href='#'><span>Contacta con nosotros</span></a></li>
-
 
 
 <? if (isset($notificaciones) && $notificaciones == 0) {
@@ -59,8 +58,6 @@ else {
 }
 
 ?>
-
-
 
 
 <body id="body_interior_cuenta">

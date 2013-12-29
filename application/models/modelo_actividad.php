@@ -16,10 +16,33 @@ class modelo_actividad extends CI_Model {
         $plazas;
     }
     
-    function get_actidades()
+    function get_actividades()
     {
         $query = $this->db->get('actividad');
         return $query->result();
+    }
+
+    function get_actividades_provincia($id)
+    {
+        $query = $this->db->query("SELECT DISTINCT a.*
+                                    FROM provincias as p, municipios as m, actividad as a 
+                                    WHERE p.id_provincia=m.id_provincia AND m.id_municipio=a.id_ciudad AND p.id_provincia=".$id." AND a.plazas > 0" );
+        $data=$query->result();
+
+        $this->load->model('modelo_tipo');
+        $this->load->model('modelo_ciudad');
+
+        foreach ($data as $row) 
+        {    
+            //print_r($row);
+            $tipo=$this->modelo_tipo->get_tipo($row->id_tipo);
+            $row->tipo=$tipo;
+            
+            $ciudad=$this->modelo_ciudad->get_ciudad($row->id_ciudad);
+            $row->ciudad=$ciudad;
+        }
+
+        return $data;
     }
 
     function get_actividad($id)
@@ -54,18 +77,18 @@ class modelo_actividad extends CI_Model {
         $this->db->insert('actividad', $this);
     }
 
-    function modificar_actividad()
+    function modificar_actividad($data)
     {
-        $this->nombre=$_POST['nombre'];
-        $this->id_tipo=$_POST['id_tipo'];
-        $this->fecha_inicio=$_POST['fecha_inicio'];
-        $this->fecha_fin=$_POST['fecha_fin'];
-        $this->id_ciudad=$_POST['id_ciudad'];
-        $this->lugar=$_POST['lugar'];
-        $this->descripcion=$_POST['descripcion'];
-        $this->plazas=$_POST['plazas'];
+        $this->nombre=$data->nombre;
+        $this->id_tipo=$data->id_tipo;
+        $this->fecha_inicio=$data->fecha_inicio;
+        $this->fecha_fin=$data->fecha_fin;
+        $this->id_ciudad=$data->id_ciudad;
+        $this->lugar=$data->lugar;
+        $this->descripcion=$data->descripcion;
+        $this->plazas=$data->plazas;
 
-        $this->db->update('actividad', $this, array('id' => $_POST['id']));
+        $this->db->update('actividad', $this, array('id' => $data->id));
     }
 
     function borrar_actividad()

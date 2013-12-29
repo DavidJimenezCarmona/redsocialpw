@@ -74,15 +74,77 @@ class controlador_actividad extends CI_Controller
 
 		$this->load->view('headers_cuenta');
 		$this->load->view('ver_actividades', $data);
-		
-
 	}
 
 	public function noAsistir()
 	{
+		//Desenlazamos la actividad con el usuario
 		$this->modelo_usuario_actividad->borrar_usuario_actividad($_SESSION['usuario']->id, $_REQUEST["actividad"]);
 		$data['mensaje'] = "Has decidido no ir a una actividad";
+
+		//Sumamos una plaza a la actividad
+		$actividad= $this->modelo_actividad->get_actividad($_REQUEST['actividad']);
+        $actividad->plazas++;
+        $this->modelo_actividad->modificar_actividad($actividad);
+
+        //Mostramos las actividades activas
 		$this->verActividades($data);
+	}
+
+	public function asistir()
+	{
+		//Enlazamos la actividad con el usuario
+        $data['id_actividad']=$_REQUEST['actividad'];
+        $data['id_usuario']=$_SESSION['usuario']->id;
+        $this->modelo_usuario_actividad->insertar_usuario_actividad($data);
+
+        //Restamos una plaza a la actividad
+        $actividad= $this->modelo_actividad->get_actividad($_REQUEST['actividad']);
+        $actividad->plazas--;
+        $this->modelo_actividad->modificar_actividad($actividad);
+
+        //Mostramos las actividades activas
+        $this->verActividades();
+	}
+
+	public function buscarActividades($data=null)
+	{
+		//Pedimos al modelo las provincias
+		$data['provincias'] = $this->modelo_ciudad->get_provincias();
+		$this->load->view('headers_cuenta');
+		$this->load->view('buscar_actividades', $data);
+	}
+
+	public function buscarPorProvincia()
+	{
+		//Pedimos al modelo las actividades
+		$data['actividades'] = $this->modelo_actividad->get_actividades_provincia($_POST['provincias']);
+
+		//Miramos las actividades a las que ya está apuntado el usuario
+		$actividadesActivas = $this->modelo_usuario_actividad->get_actividades($_SESSION['usuario']->id);
+
+		//Creamos un array para guardar las actividades a las que aun no ha confirmado ir el usuario
+		$data['actividadesNoActivas']=array();
+
+		//Comprobamos a cuales no ha confirmado y las metemos en el array
+		$control=0;
+		foreach ($data['actividades'] as $a) 
+		{
+			foreach($actividadesActivas as $aa)
+			{
+				if($aa->id == $a->id)
+				{
+					$control=1;
+				}
+			}
+			if ($control == 0)
+				array_push($data['actividadesNoActivas'], $a );
+			$control=0;
+		}
+
+		//Mostramos las actividades
+		$this->buscarActividades($data);
+
 	}
 }
 ?>

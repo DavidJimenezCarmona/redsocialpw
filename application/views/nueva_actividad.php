@@ -28,9 +28,8 @@ for($i=0;$i<12;$i++) $mes[$i]=($i+1);
 for($i=0;$i<100;$i++) $anyo[$i]=($i+2013);
 ?>
 
-
+<h1 id="tituloActividad"> Nueva actividad </h1>
 <div id="cajaAct">
-	<h2>Nueva actividad</h2>
 	<? echo form_open('controlador_actividad/guardarActividad'); ?>
 	<p id="formulario_login">
 	<table id="tablaregistro">

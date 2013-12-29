@@ -19,6 +19,14 @@ class modelo_ciudad extends CI_Model {
         }
         return $data;
     }
+
+    function get_provincia($id)
+    {
+        $query = $this->db->select()
+                          ->where('id_provincia', $id)
+                          ->get('provincias');
+        return $query->row();
+    }
     
     function get_ciudades($codprov)
     {
