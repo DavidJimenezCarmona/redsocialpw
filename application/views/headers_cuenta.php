@@ -35,12 +35,13 @@
       <ul>
          <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_mensajes/bandejaEntrada'><span>Bandeja de entrada</span></a>
          </li>
-         <li class='has-sub'><a href='#'><span>Nuevo</span></a>
+         <li class='has-sub'><a href='<?= base_url(); ?>index.php/controlador_mensajes/nuevoMensaje'><span>Nuevo</span></a>
          </li>
       </ul>
    </li>
    <li><a href='#'><span>Acerca de...</span></a></li>
    <li class='last'><a href='#'><span>Contacta con nosotros</span></a></li>
+   <li class='last'><a href='<?= base_url(); ?>index.php/welcome/salir'><span>Salir</span></a></li>
 
 
 <? if (isset($notificaciones) && $notificaciones == 0) {

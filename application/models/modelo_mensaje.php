@@ -47,15 +47,9 @@ class modelo_mensaje extends CI_Model {
             return $data;
     }
 
-    function insertar_mensaje()
+    function insertar_mensaje($mensaje)
     {
-        
-        $this->id_usuario_emisor=$_POST['id_usuario_emisor'];
-        $this->id_usuario_receptor=$_POST['id_usuario_receptor'];
-        $this->contenido=$_POST['contenido'];
-        $this->visto=$_POST['visto'];
-
-        $this->db->insert('mensaje', $this);
+        $this->db->insert('mensaje', $mensaje);
     }
 
     function modificar_mensaje($mensaje)

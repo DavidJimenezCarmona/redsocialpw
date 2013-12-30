@@ -313,7 +313,7 @@ body{
   color:#3b5998;
 }
 
-#tablaMensajes
+.tablaMensajes
 {
   color: #3b5998;
   margin: 0 auto;
@@ -321,13 +321,13 @@ body{
   border-collapse: collapse;
 }
 
-#cabeceraTablaMensajes
+.cabeceraTablaMensajes
 {
   background: #3b5998;
   color: white;
 }
 
-#filaTablaMensajes
+.filaTablaMensajes
 {
   border-bottom: navy solid thin;
   border-top: navy solid thin;
@@ -335,7 +335,12 @@ body{
   border-right: none;
 }
 
-#filaTablaMensajesNoVisto
+tr.filaTablaMensajes:hover
+{
+  background: #81DAF5;
+}
+
+.filaTablaMensajesNoVisto
 {
   background: #96DF72;
   border-bottom: navy solid thin;
@@ -344,13 +349,13 @@ body{
   border-right: none;
 }
 
-#divTablaMensajes
+.divTablaMensajes
 {
   text-align: center;
   margin: auto;
 }
 
-#cajaMensaje
+.cajaMensaje
 {
   margin: auto;
   border: 0.15em solid #3b5998;
@@ -359,20 +364,54 @@ body{
   padding: 1em;
 }
 
-#divMensaje
+.divMensaje
 {
   margin: auto;
   width: 50%; 
 }
 
-#tituloMensaje
+.tituloMensaje
 {
   text-align: left;
   color: #3b5998;
-  padding: 0px;
+  margin:0;
 }
+.tituloMensaje:hover
+{
+  background: white;
+}
+
+.divNuevoMensaje
+{
+  margin: auto;
+  width: 30%; 
+  text-align: center;
+}
+
+.cajaNuevoMensaje
+{
+  text-align: center;
+  margin: auto;
+  border: 0.15em solid #3b5998;
+  border-radius: 0.2em;
+  width: 100%; 
+  padding: 1em;
+}
+
+#centradoNuevoMensaje
+{
+  color: #3b5998;
+  text-align: center;
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+
 /*-------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------CSS DEL MENÚ-----------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:500);
 /* 2f4b87 */

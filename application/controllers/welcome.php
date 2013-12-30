@@ -148,5 +148,13 @@ class Welcome extends CI_Controller {
 			}
 		}
 	}
+
+	public function salir()
+	{
+		if(!isset($_SESSION))
+			session_start();
+		session_destroy();
+		$this->cargarInicio();
+	}
 }
 ?>

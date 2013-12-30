@@ -28,24 +28,24 @@ class modelo_amigo extends CI_Model {
         }
 
         if($query->num_rows() == 0) {
-            return 1; //Es falso
+            return 1; //Es verdad
         }
 
         else {
-            return 0; //Es verdad
+            return 0; //Es falso
         }
     }
 
     function get_amigos($id) {
 
-        $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 0) 
-            OR id IN (SELECT id_usuario2 FROM amigo WHERE id_usuario1 = '$id' AND aceptado = 0)");
+        $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 1) 
+            OR id IN (SELECT id_usuario2 FROM amigo WHERE id_usuario1 = '$id' AND aceptado = 1)");
 
         return $query->result_array();  
     }
 
     function get_peticiones($id) {
-        $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 1)");
+        $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$id' AND aceptado = 0)");
 
         return $query->result_array();  
     }
@@ -60,7 +60,7 @@ class modelo_amigo extends CI_Model {
     {
         $this->id_usuario1=$id1;
         $this->id_usuario2=$id2;
-        $this->aceptado=1; //1 es FALSO que no te ha aceptado
+        $this->aceptado=0; //0 es FALSO que no te ha aceptado
 
         $this->db->insert('amigo', $this);
     }
@@ -82,7 +82,7 @@ class modelo_amigo extends CI_Model {
     function notificaciones_pendientes($id) {
         $this->db->select(); 
         $this->db->where('id_usuario2', $id); //Es receptor de la petición
-        $this->db->where('aceptado',1);
+        $this->db->where('aceptado',0);
         $query = $this->db->get('amigo');
 
         if ($query->num_rows() > 0)
@@ -94,7 +94,7 @@ class modelo_amigo extends CI_Model {
 
     function aceptar_peticion($id1, $id2) {
 
-        $this->db->query("UPDATE amigo SET aceptado = 0 WHERE (aceptado = 1 AND id_usuario1 = '$id1' AND id_usuario2 = '$id2') ");
+        $this->db->query("UPDATE amigo SET aceptado = 1 WHERE (aceptado = 0 AND id_usuario1 = '$id1' AND id_usuario2 = '$id2') ");
     }
 
 }
