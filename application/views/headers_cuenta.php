@@ -40,7 +40,7 @@
       </ul>
    </li>
    <li><a href='#'><span>Acerca de...</span></a></li>
-   <li class='last'><a href='#'><span>Contacta con nosotros</span></a></li>
+   <li class='last'><a href='<?= base_url(); ?>index.php/controlador_contacto/contacta'><span>Contacta con nosotros</span></a></li>
    <li class='last'><a href='<?= base_url(); ?>index.php/welcome/salir'><span>Salir</span></a></li>
 
 
