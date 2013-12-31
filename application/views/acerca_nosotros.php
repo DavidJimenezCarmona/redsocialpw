@@ -1,0 +1,1 @@
+<p class="negrita"> FSD es una red social que intenta facilitarte hacer planes con gente de tu ciudad. </p>
