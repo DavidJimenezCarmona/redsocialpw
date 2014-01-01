@@ -8,7 +8,7 @@
 	<br>Contraseña:<br> <?= form_password('pass'); ?></p>
 	<? echo form_submit('Entrar', 'Entrar'); ?><br>
 	<br>
-	<a id="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
+	<a class="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
 	<p id="texto_registro"> ¿Aún no formas parte de FSD?</p>
 	<p id="centrado"><?= form_submit('registrate', 'Regístrate'); ?></p>
 </div>

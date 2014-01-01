@@ -18,7 +18,7 @@ if(isset($amigos)) {
 				<p class=\"texto_ficha\">".$amigo["apellidos"]."</p>
 				<p class=\"texto_ficha\">".$sexo."</p>
 				<p class=\"texto_ficha\">".$amigo["fecha_nacimiento"]."</p>
-				<a href='#'><span>Ver perfil</span></a>
+				<a class=\"enlace\" href='".base_url()."index.php/controlador_amigos/mostrar_perfil/".$amigo["id"]."'><span>Ver perfil</span></a>
 
 				</div>";
 	}

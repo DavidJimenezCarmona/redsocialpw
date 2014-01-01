@@ -29,6 +29,23 @@ padding:5px;
 body{
 	background-color: #000066;
 }
+
+a.enlace:link, a.enlace:visited{
+text-decoration: none;
+color: #33FF66;
+font-weight: bold;
+}
+a.enlace:hover {
+background: #2A0A0A;
+Color: #FFF;
+font-style: italic;
+}
+a.enlace:active{
+background: #2A0A0A;
+Color: black;
+font-style: normal;
+}
+
 #cajalog{
 	text-align: center;
 	color: #06002E;
@@ -124,10 +141,6 @@ body{
 	font-size: 20;
 }
 
-#enlace{
-	font-size: 16;
-	color: white;
-}
 
 #logo {
 	height: 12em;

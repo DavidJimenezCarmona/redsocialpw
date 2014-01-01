@@ -59,12 +59,23 @@ class controlador_amigos extends CI_Controller {
 	{
 		if($this->modelo_amigo->es_amigo($_SESSION['usuario']->id, $id) == 0) 
 		{
-			echo "No puedes enviarle mas peticiones de amistad a este usuario";
+			$this->load->view('headers_cuenta');
+			$data['mensaje'] = "Ya le enviaste una petición de amistad a este usuario con anterioridad, 
+			por favor espera a que éste la responda 
+			o asegurate de que no se encuentra ya en tu lista de amigos.";
+			$this->load->view('notificacion', $data);
+			$this->load->view('footer_comun');
 		}
 		else 
 		{
 			$this->modelo_amigo->insertar_amigo($_SESSION['usuario']->id,$id);
-			echo "Amigo agregado con exito.";
+			$this->load->view('headers_cuenta');
+			$data['mensaje'] = "La petición de amistad de ha enviado correctamente, 
+			espera a que el usuario la responda 
+			y aparecerá en tu lista de  amigos.";
+			$this->load->view('notificacion', $data);
+			$this->load->view('footer_comun');
+
 		}
 	}
 
@@ -111,7 +122,10 @@ class controlador_amigos extends CI_Controller {
 	public function aceptar_peticion($id1, $id2) 
 	{
 		$peticiones = $this->modelo_amigo->aceptar_peticion($id1, $id2);
-		echo "La petición se ha aceptado correctamente.";
+		$this->load->view('headers_cuenta');
+		$data['mensaje'] = "Has aceptado la petición de amistad, ahora puedes encontrar a este usuario en tu lista de amigos!";
+		$this->load->view('notificacion', $data);
+		$this->load->view('footer_comun');
 	}
 
 

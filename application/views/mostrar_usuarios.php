@@ -19,7 +19,7 @@ if(isset($amigos)) {
 				<p class=\"texto_ficha\">".$amigo->apellidos."</p>
 				<p class=\"texto_ficha\">".$sexo."</p>
 				<p class=\"texto_ficha\">".$amigo->fecha_nacimiento."</p>
-				<a href='".base_url()."index.php/controlador_amigos/agregar_amigo/".$amigo->id."'><span>Agregar como amigo</span></a>
+				<a class=\"enlace\" href='".base_url()."index.php/controlador_amigos/agregar_amigo/".$amigo->id."'><span>Agregar como amigo</span></a>
 
 				</div>";
 		}
