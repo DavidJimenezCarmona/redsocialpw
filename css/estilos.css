@@ -197,6 +197,45 @@ font-style: normal;
 	text-align: center;
 }
 
+#perfil_datos_usuario {
+  float: left;
+  margin-left: 5em;
+  border-radius: 10px;
+  padding: 2.5em;
+  border: 0.5em solid black;
+
+}
+
+#perfil_actividades_usuario {
+  float: left;
+  margin-left: 5em;
+  border-radius: 10px;
+  padding: 2.5em;
+  border: 0.5em solid black;
+  width: 35em;
+}
+
+#perfil_amigos_usuario {
+  float: left;
+  margin-left: 5em;
+  border-radius: 10px;
+  padding: 2.5em;
+  border: 0.5em solid black;
+  width: 25em;
+}
+
+.texto_perfil {
+    color: black;
+    font-size: 17;
+
+}
+
+.titulo_perfil {
+    color: black;
+    font-size: 30;
+    font-weight: bold;
+}
+
 #mensaje_error {
 	text-align: center;
 	color: red;

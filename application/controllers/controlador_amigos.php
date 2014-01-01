@@ -87,7 +87,7 @@ class controlador_amigos extends CI_Controller {
 		//Cargamos las vistas
 
 		$this->load->view('headers_cuenta');
-		$this->load->view('mostrar_perfil',$data);
+		$this->load->view('mostrar_perfil', $data);
 		$this->load->view('footer_comun');
 	}
 
