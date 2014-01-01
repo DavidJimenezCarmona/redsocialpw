@@ -79,6 +79,18 @@ class controlador_amigos extends CI_Controller {
 		}
 	}
 
+	public function mostrar_perfil($id) {
+		$amigo = $this->modelo_amigo->get_amigo($_SESSION['usuario']->id,$id);
+
+		$data["amigo"] = $amigo;
+
+		//Cargamos las vistas
+
+		$this->load->view('headers_cuenta');
+		$this->load->view('mostrar_perfil',$data);
+		$this->load->view('footer_comun');
+	}
+
 	public function mostrar_amigos() 
 	{
 		$amigos = $this->modelo_amigo->get_amigos($_SESSION['usuario']->id);

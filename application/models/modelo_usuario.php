@@ -15,6 +15,29 @@ class modelo_usuario extends CI_Model {
         $email=" ";
         $activo=0;
     }
+
+    function unicidad_alias($alias) {
+        $this->db->select('alias');
+        $this->db->where('alias', $alias);    
+        $query = $this->db->get('usuario');
+
+        if($query->row() == null) {
+            return 1;
+        }
+
+        else {
+            return 0;
+        }
+    }
+
+    function obtener_id($alias) {
+
+        $this->db->select();
+        $this->db->where('alias', $alias);    
+        $query = $this->db->get('usuario');
+
+        return $query->result_array();
+    }
     
     function get_usuarios()
     {
@@ -80,6 +103,7 @@ class modelo_usuario extends CI_Model {
 
         $this->db->insert('usuario', $this);
     }
+
 
     function modificar_usuario()
     {

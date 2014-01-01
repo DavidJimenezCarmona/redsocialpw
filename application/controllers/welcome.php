@@ -96,33 +96,53 @@ class Welcome extends CI_Controller {
 		//Metemos en un array los datos a insertar en la bd
 		$this->load->helper('email');
 
-		$usuario['alias']=$_POST['alias'];
-		$usuario['pass']=$_POST['pass'];
-		$usuario['nombre']=$_POST['nombre'];
-		$usuario['apellidos']=$_POST['apellidos'];
-		$usuario['fecha_nacimiento']=$_POST['fecha_nacimiento'];
-		$usuario['sexo']=$_POST['sexo'];
-		$usuario['email']=$_POST['email'];
+		//Cargamos el modelo usuario
+		$this->load->model('modelo_usuario');
 
-		//Comprobamos que todos los campos se hayan insertdo
-		if ($usuario['alias']=="" || 
-			$usuario['pass']=="" || 
-			$usuario['nombre']=="" || 
-			$usuario['apellidos']=="" ||
-			$usuario['fecha_nacimiento']=="" ||
-			$usuario['sexo']=="" ||
-			$usuario['email']=="")
-		{
-			$this->registro_fallido();
+		if($this->modelo_usuario->unicidad_alias($_POST['alias']) == 1) { //Comprobamos que el alias es único
+
+			$usuario['alias']=$_POST['alias'];
+			$usuario['pass']=$_POST['pass'];
+			$usuario['nombre']=$_POST['nombre'];
+			$usuario['apellidos']=$_POST['apellidos'];
+			$usuario['fecha_nacimiento']=$_POST['fecha_nacimiento'];
+			$usuario['sexo']=$_POST['sexo'];
+			$usuario['email']=$_POST['email'];
+
+			//Comprobamos que todos los campos se hayan insertdo
+			if ($usuario['alias']=="" || 
+				$usuario['pass']=="" || 
+				$usuario['nombre']=="" || 
+				$usuario['apellidos']=="" ||
+				$usuario['fecha_nacimiento']=="" ||
+				$usuario['sexo']=="" ||
+				$usuario['email']=="")
+			{
+				$this->registro_fallido();
+			}
+			else
+			{
+				//Llamamos al método del model que crea un nuevo usuario
+				$this->modelo_usuario->insertar_usuario($usuario);
+				//Creamos el perfil asociado (actualmente en blanco) al nuevo usuario
+				$this->load->model('modelo_perfil');
+
+				$idUser = $this->modelo_usuario->obtener_id($_POST['alias']);
+				$this->modelo_perfil->insertar_perfil($idUser);
+
+				//Cargamos la página de inicio pasándole el usuario que acabamos de insertar
+				$this->cargarCuenta($this->modelo_usuario->get_usuario_alias($usuario['alias']));
+			}
+
 		}
-		else
-		{
-			//Cargamos el modelo usuario
-			$this->load->model('modelo_usuario');
-			//Llamamos al método del model que crea un nuevo usuario
-			$this->modelo_usuario->insertar_usuario($usuario);
-			//Cargamos la página de inicio pasándole el usuario que acabamos de insertar
-			$this->cargarCuenta($this->modelo_usuario->get_usuario_alias($usuario['alias']));
+
+		else {
+
+			$this->load->view('headers');
+			$data['mensaje'] = "El alias elegido ya esta en uso.";
+			$this->load->view('nuevoUsuario', $data);
+			$this->load->view('footer');
+
 		}
 
 	}

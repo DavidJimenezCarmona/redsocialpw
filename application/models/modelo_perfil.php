@@ -30,17 +30,10 @@ class modelo_perfil extends CI_Model {
         return $query->result();
     }
 
-    function insertar_perfil()
+    function insertar_perfil($usuario)
     {
-        $this->id_usuario=$_POST['id_usuario'];
-        $this->id_ciudad_residencia=$_POST['id_ciudad_residencia'];
-        $this->id_ciudad_nacimiento=$_POST['id_ciudad_nacimiento'];
-        $this->ocupacion=$_POST['ocupacion'];
-        $this->centro_actividad=$_POST['centro_actividad'];
-        $this->foto=$_POST['foto'];
-
-
-        $this->db->insert('perfil', $this);
+        $idUser = $usuario['id'];
+        $this->db->query("INSERT INTO perfil (id_usuario) VALUES ('$idUser'");
     }
 
     function modificar_perfil()
