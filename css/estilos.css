@@ -206,22 +206,13 @@ font-style: normal;
 
 }
 
-#perfil_actividades_usuario {
+#perfil_datos_perfil {
   float: left;
   margin-left: 5em;
   border-radius: 10px;
   padding: 2.5em;
   border: 0.5em solid black;
   width: 35em;
-}
-
-#perfil_amigos_usuario {
-  float: left;
-  margin-left: 5em;
-  border-radius: 10px;
-  padding: 2.5em;
-  border: 0.5em solid black;
-  width: 25em;
 }
 
 .texto_perfil {

@@ -19,15 +19,7 @@ if(isset($amigo)) {
 				</div>";
 	}
 
-	echo "<div id=\"perfil_actividades_usuario\">
-	<p class=\"titulo_perfil\"> Actividades creadas por el usuario </p>
-	</div>";
-
-	echo "<div id=\"perfil_amigos_usuario\">
-	<p class=\"titulo_perfil\"> Amigos del usuario </p>
-	</div>";
-
-	echo "<div id=\"perfil_datos_usuario\">
+	echo "<div id=\"perfil_datos_perfil\">
 	<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>
 	</div>";
 }
