@@ -30,10 +30,11 @@ class modelo_perfil extends CI_Model {
         return $query->result();
     }
 
-    function insertar_perfil($usuario)
+    function insertar_perfil($data)
     {
-        $idUser = $usuario['id'];
-        $this->db->query("INSERT INTO perfil (id_usuario) VALUES ('$idUser'");
+        $this->id_usuario = $data['id_usuario'];
+
+        $this->db->insert('perfil', $this);
     }
 
     function modificar_perfil()

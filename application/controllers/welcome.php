@@ -127,8 +127,8 @@ class Welcome extends CI_Controller {
 				//Creamos el perfil asociado (actualmente en blanco) al nuevo usuario
 				$this->load->model('modelo_perfil');
 
-				$idUser = $this->modelo_usuario->obtener_id($_POST['alias']);
-				$this->modelo_perfil->insertar_perfil($idUser);
+				$data['id_usuario'] = mysql_insert_id();
+				$this->modelo_perfil->insertar_perfil($data);
 
 				//Cargamos la página de inicio pasándole el usuario que acabamos de insertar
 				$this->cargarCuenta($this->modelo_usuario->get_usuario_alias($usuario['alias']));

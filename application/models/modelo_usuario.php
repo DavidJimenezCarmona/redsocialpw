@@ -69,7 +69,7 @@ class modelo_usuario extends CI_Model {
         $this->db->where('alias', $alias); 
         $query = $this->db->get('usuario');
 
-        $result = $query->result();;
+        $result = $query->result();
         return $result;
     }
 
