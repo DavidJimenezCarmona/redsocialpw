@@ -58,6 +58,36 @@ class Welcome extends CI_Controller {
 		}
 	}
 
+	public function modificar_perfil() {
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->library('table');
+		//Cargamos las vistas
+		$this->load->view('headers_cuenta');
+		$this->load->view('modificar_perfil');
+		$this->load->view('footer_comun');
+	}
+
+	public function nuevos_datos_perfil() {
+
+		if(!isset($_SESSION)) {
+			session_start();
+		}
+		
+
+		$perfil['id_ciudad_residencia']=$_POST['id_ciudad_residencia'];
+		$perfil['id_ciudad_nacimiento']=$_POST['id_ciudad_nacimiento'];
+		$perfil['ocupacion']=$_POST['ocupacion'];
+		$perfil['centro_actividad']=$_POST['centro_actividad'];
+
+		$this->load->model('modelo_perfil');
+		$this->modelo_perfil->modificar_perfil($_SESSION['usuario']->id,$perfil);
+
+		echo "Los datos se han actualizado correctamente.";
+
+
+	}
+
 	public function cargarInicioErroneo()
 	{
 		$this->load->helper('url');

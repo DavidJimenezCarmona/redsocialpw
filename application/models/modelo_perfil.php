@@ -23,6 +23,16 @@ class modelo_perfil extends CI_Model {
         return $query->result_array();
     }
 
+    function modificar_perfil($idUser, $perfil) {
+
+        $this->id_ciudad_residencia = $perfil['id_ciudad_residencia'];
+        $this->id_ciudad_nacimiento = $perfil['id_ciudad_nacimiento'];
+        $this->ocupacion = $perfil['ocupacion'];
+        $this->centro_actividad = $perfil['centro_actividad'];
+
+        $this->db->update('perfil', $this, array('id_usuario' => $idUser));
+    }
+
 
     function get_perfiles()
     {
@@ -35,18 +45,6 @@ class modelo_perfil extends CI_Model {
         $this->id_usuario = $data['id_usuario'];
 
         $this->db->insert('perfil', $this);
-    }
-
-    function modificar_perfil()
-    {
-        $this->id_usuario=$_POST['id_usuario'];
-        $this->id_ciudad_residencia=$_POST['id_ciudad_residencia'];
-        $this->id_ciudad_nacimiento=$_POST['id_ciudad_nacimiento'];
-        $this->ocupacion=$_POST['ocupacion'];
-        $this->centro_actividad=$_POST['centro_actividad'];
-        $this->foto=$_POST['foto'];
-
-        $this->db->update('perfil', $this, array('id' => $_POST['id']));
     }
 
     function borrar_perfil()

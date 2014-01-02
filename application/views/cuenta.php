@@ -13,7 +13,8 @@
 		else
 			echo '<p id="saludo"> Bienvenido ' . $usuario->alias . '</p>' ;
 	?>
-	<p><?= form_submit('Mi Cuenta', 'Mi Cuenta'); ?></p>
+	<? echo form_open('welcome/modificar_perfil'); ?>
+	<p><?= form_submit('Modificar perfil', 'Modificar perfil'); ?></p>
 </div>
 
 <div id="avatar"> <? //Si no tiene foto (Hay que comprobarlo en su perfil), se carga una por defecto ?>
