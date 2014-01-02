@@ -11,6 +11,7 @@ class controlador_amigos extends CI_Controller {
 
         $this->load->model('modelo_usuario');
         $this->load->model('modelo_amigo');
+        $this->load->model('modelo_perfil');
     }
 
 	public function buscar_amigos() 
@@ -83,6 +84,12 @@ class controlador_amigos extends CI_Controller {
 		$amigo = $this->modelo_amigo->get_amigo($_SESSION['usuario']->id,$id);
 
 		$data["amigo"] = $amigo;
+
+		//Recuperamos además los datos del perfil del anterior amigo:
+
+		$perfil = $this->modelo_perfil->get_perfil($id);
+
+		$data["perfil"] = $perfil;
 
 		//Cargamos las vistas
 

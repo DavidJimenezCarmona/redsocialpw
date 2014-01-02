@@ -20,7 +20,7 @@ class modelo_perfil extends CI_Model {
         $this->db->where('id_usuario', $id); 
         $query = $this->db->get('perfil');
 
-        return $query->row();
+        return $query->result_array();
     }
 
 
