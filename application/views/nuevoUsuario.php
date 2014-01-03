@@ -12,8 +12,8 @@ for($i=0;$i<100;$i++) $anyo[$i]=(2013-$i);
 
 //Variables para escoger el sexo
 
-$sexo[0] = "Hombre";
-$sexo[1] = "Mujer";
+$sexo[0] = "Mujer";
+$sexo[1] = "Hombre";
 
 ?>
 

@@ -44,6 +44,7 @@ class controlador_amigos extends CI_Controller {
 		else 
 		{
 			$data['amigos']=$this->modelo_usuario->get_usuarios();
+			$data['usuario'] = $_SESSION['usuario'];
 			$this->mostrar_usuarios($data);
 		}
 	}
@@ -111,6 +112,7 @@ class controlador_amigos extends CI_Controller {
 		else 
 		{
 			$data['amigos'] = $amigos;
+			$data['usuario'] = $_SESSION['usuario'];
 		}
 		
 		//Cargamos las vistas

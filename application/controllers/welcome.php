@@ -16,6 +16,7 @@ class Welcome extends CI_Controller {
         $this->load->model('modelo_usuario');
         $this->load->model('modelo_amigo');
         $this->load->model('modelo_perfil');
+        $this->load->model('modelo_ciudad');
     }
 
 	public function cargarInicio()
@@ -35,17 +36,27 @@ class Welcome extends CI_Controller {
 		$this->home();
 	}
 
+	public function cargarAdministracion($usuario) {
+		$_SESSION['usuario'] = $usuario;
+
+		$this->load->view('headers_admin');
+		$this->load->view('cuenta');
+		$this->load->view('footer_comun');
+	}
+
 	//Carga la página de inicio
 	public function home() 
 	{
 		
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
 
+		$data["perfil"] = $_SESSION['perfil'];
+
 		if($notificaciones == 0) {  //Hay notificaciones pendientes
 			$data["notificaciones"]= 0;
 			//Cargamos las vistas
 			$this->load->view('headers_cuenta',$data);
-			$this->load->view('cuenta');
+			$this->load->view('cuenta', $data);
 			$this->load->view('footer_comun');
 		}
 
@@ -53,17 +64,17 @@ class Welcome extends CI_Controller {
 			$data["notificaciones"]= 1;
 			//Cargamos las vistas
 			$this->load->view('headers_cuenta',$data);
-			$this->load->view('cuenta');
+			$this->load->view('cuenta', $data);
 			$this->load->view('footer_comun');
 		}
 	}
 
 	public function modificar_perfil() {
 
-		
-		$this->load->helper('url');
-		$this->load->model('modelo_amigo');
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
+
+		//Pedimos al modelo las provincias y los tipos de actividades
+		$data['provincias'] = $this->modelo_ciudad->get_provincias();
 
 		if($notificaciones == 0) {  //Hay notificaciones pendientes
 			$data["notificaciones"]= 0;
@@ -82,7 +93,7 @@ class Welcome extends CI_Controller {
 		}
 	}
 
-	public function nuevos_datos_perfil() {
+	public function actualizar_perfil() {
 
 		$perfil['id_ciudad_residencia']=$_POST['id_ciudad_residencia'];
 		$perfil['id_ciudad_nacimiento']=$_POST['id_ciudad_nacimiento'];
@@ -142,7 +153,13 @@ class Welcome extends CI_Controller {
 			$usuario['nombre']=$_POST['nombre'];
 			$usuario['apellidos']=$_POST['apellidos'];
 			$usuario['fecha_nacimiento']=(2013 - $_POST['anyo']).'-'.($_POST['mes']+1).'-'.($_POST['dia']+1);
-			$usuario['sexo']=$_POST['sexo'];
+			if($_POST['sexo'] == "Mujer") {
+				$usuario['sexo'] = 0;
+			}
+
+			else {
+				$usuario['sexo'] = 1;
+			}
 			$usuario['email']=$_POST['email'];
 
 			//Comprobamos que todos los campos se hayan insertdo
@@ -201,8 +218,12 @@ class Welcome extends CI_Controller {
 			}
 			else
 			{
-				//TENEMOS EN LA VARIABLE $USUARIO TODOS LOS DATOS DEL USUARIO, SE LO PASAMOS TODO A LA VISTA PARA PODERLOS USAR5
-				$this->cargarCuenta($usuario);
+				if($usuario->permisos == 0) {  //Es un usuario habitual
+					$this->cargarCuenta($usuario);
+				}
+				else { //Es un usuario administrador
+					$this->cargarAdministracion($usuario);
+				}
 			}
 		}
 	}

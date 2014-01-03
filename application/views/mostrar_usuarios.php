@@ -18,10 +18,15 @@ if(isset($amigos)) {
 				<p class=\"texto_ficha\">".$amigo->nombre."</p>
 				<p class=\"texto_ficha\">".$amigo->apellidos."</p>
 				<p class=\"texto_ficha\">".$sexo."</p>
-				<p class=\"texto_ficha\">".$amigo->fecha_nacimiento."</p>
-				<a class=\"enlace\" href='".base_url()."index.php/controlador_amigos/agregar_amigo/".$amigo->id."'><span>Agregar como amigo</span></a>
+				<p class=\"texto_ficha\">".$amigo->fecha_nacimiento."</p>";
 
-				</div>";
+					if($usuario->permisos == 0) { //Es un usuario normal
+						echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_amigos/agregar_amigo/".$amigo->id."'><span>Agregar como amigo</span></a>";
+					}
+					else { //Es un admin
+						echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/crear_reporte/".$amigo->id."'><span>Reportar usuario</span></a>";
+					}
+					echo "</div>";
 		}
 	}
 }
