@@ -14,7 +14,10 @@ class modelo_reporte extends CI_Model {
     
     function get_reportes()
     {
+        $this->db->select(); 
+        $this->db->where('estado',1);
         $query = $this->db->get('reporte');
+
         return $query->result();
     }
 
@@ -29,13 +32,10 @@ class modelo_reporte extends CI_Model {
         $this->modelo_usuario->banear_usuario($idReportado); //Se banea directamente al usuario por ser petición de un admin.
     }
 
-    function modificar_reporte()
+    function modificar_reporte($idReporte)
     {
-        $this->id_usuario_reportador=$_POST['id_usuario_reportador'];
-        $this->id_usuario_reportado=$_POST['id_usuario_reportado'];
-        $this->motivo=$_POST['motivo'];
-        $this->estado=$_POST['estado'];
-        $this->db->update('reporte', $this, array('id' => $_POST['id']));
+        $this->estado = 0; //Ya lo ha visto un administrador
+        $this->db->update('reporte', $this, array('id' => $idReporte)); 
     }
 
     function borrar_reporte($idUser)
@@ -45,7 +45,12 @@ class modelo_reporte extends CI_Model {
         $this->modelo_usuario->desbanear_usuario($idUser); //Se elimina el baneo del usuario
     }
 
-    function notificaciones_pendientes($idUser) {
+    function borrar_reporte_id($idReporte) {
+
+        $this->db->delete('reporte', array('id' => $idReporte)); //Se borra el reporte con esa id
+    }
+
+    function notificaciones_pendientes() {
         $this->db->select(); 
         $this->db->where('estado',1);
         $query = $this->db->get('reporte');
