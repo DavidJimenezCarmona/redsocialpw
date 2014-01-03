@@ -117,11 +117,20 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');	
 	}
 
-	public function registro_fallido() {
-		$this->load->view('headers');
-		$data['mensaje'] = "Los datos no son correctos, por favor complete todos los campos"; //NO HACE FALTA OTRA VISTA SOLO PARA ESO
-		$this->load->view('nuevoUsuario', $data);
-		$this->load->view('footer');
+	public function registro_fallido($caso) {
+		if($caso == 0) {
+			$this->load->view('headers');
+			$data['mensaje'] = "Los datos no son correctos, por favor complete todos los campos."; 
+			$this->load->view('nuevoUsuario', $data);
+			$this->load->view('footer');
+		}
+
+		else {
+			$this->load->view('headers');
+			$data['mensaje'] = "Las contraseñas deben coincidir.";
+			$this->load->view('nuevoUsuario', $data);
+			$this->load->view('footer');
+		}
 	}
 
 	public function nuevoUsuario()
@@ -129,10 +138,10 @@ class Welcome extends CI_Controller {
 		if($this->modelo_usuario->unicidad_alias($_POST['alias']) == 1) { //Comprobamos que el alias es único
 
 			$usuario['alias']=$_POST['alias'];
-			$usuario['pass']=$_POST['pass'];
+			$usuario['pass']=$_POST['pass1'];
 			$usuario['nombre']=$_POST['nombre'];
 			$usuario['apellidos']=$_POST['apellidos'];
-			$usuario['fecha_nacimiento']=$_POST['fecha_nacimiento'];
+			$usuario['fecha_nacimiento']=(2013 - $_POST['anyo']).'-'.($_POST['mes']+1).'-'.($_POST['dia']+1);
 			$usuario['sexo']=$_POST['sexo'];
 			$usuario['email']=$_POST['email'];
 
@@ -145,8 +154,13 @@ class Welcome extends CI_Controller {
 				$usuario['sexo']=="" ||
 				$usuario['email']=="")
 			{
-				$this->registro_fallido();
+				$this->registro_fallido(1);
 			}
+
+			if($_POST['pass1'] != $_POST['pass2']) {
+				$this->registro_fallido(2);
+			}
+
 			else
 			{
 				//Llamamos al método del model que crea un nuevo usuario
