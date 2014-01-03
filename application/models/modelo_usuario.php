@@ -120,5 +120,10 @@ class modelo_usuario extends CI_Model {
         $this->db->update('usuario', $this, array('id' => $idUser));
     }
 
+    function desbanear_usuario($idUser) {
+        $this->activo = 1;
+        $this->db->update('usuario', $this, array('id' => $idUser));
+    }
+
 }
 ?>

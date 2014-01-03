@@ -36,6 +36,19 @@ class controlador_reporte extends CI_Controller {
         }
     }
 
+    public function eliminar_reporte_admin($idUser) {
+
+        $data["usuario"] = $_SESSION['usuario'];
+        $data["notificaciones"] = $_SESSION['notificaciones'];
+        $data["reportes"] = $_SESSION['reportes'];
+
+        $this->modelo_reporte->borrar_reporte($idUser);
+        $this->load->view('headers_cuenta',$data);
+        $data['mensaje'] = "Se ha eliminado el baneo y el reporte asociado a dicho usuario correctamente.";
+        $this->load->view('notificacion', $data);
+        $this->load->view('footer_comun');
+    }
+
 }
 
 ?>

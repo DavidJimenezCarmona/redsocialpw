@@ -38,9 +38,11 @@ class modelo_reporte extends CI_Model {
         $this->db->update('reporte', $this, array('id' => $_POST['id']));
     }
 
-    function borrar_reporte()
+    function borrar_reporte($idUser)
     {
-        $this->db->delete('reporte', $this, array('id' => $_POST['id']));
+        $this->db->delete('reporte', array('id_usuario_reportado' => $idUser)); //Se borra el reporte de ese usuario.
+        $this->load->model('modelo_usuario');
+        $this->modelo_usuario->desbanear_usuario($idUser); //Se elimina el baneo del usuario
     }
 
     function notificaciones_pendientes($idUser) {

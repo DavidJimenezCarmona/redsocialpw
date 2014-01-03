@@ -21,10 +21,13 @@ if(isset($amigos)) {
 				<p class=\"texto_ficha\">".$amigo->fecha_nacimiento."</p>
 				<a class=\"enlace\" href='".base_url()."index.php/controlador_amigos/agregar_amigo/".$amigo->id."'><span>Agregar como amigo</span></a><br><br>";
 					
-				if($usuario->permisos == 1) { //Es administrador
+				if($usuario->permisos == 1 && $amigo->activo == 1) { //Es administrador y el usuario no esta baneado aún
 					echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/crear_reporte_admin/".$amigo->id."'><span>Reportar usuario</span></a>";	
 				}
 
+				else if($usuario->permisos == 1) {//Es administrador y el usuario esta baneado.
+					echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/eliminar_reporte_admin/".$amigo->id."'><span>Eliminar reporte</span></a>";	
+				}
 			echo "</div>";
 		}
 	}
