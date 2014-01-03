@@ -127,8 +127,7 @@ class controlador_amigos extends CI_Controller {
 		}
 		else 
 		{
-			$data['amigos'] = $amigos;
-			$data['usuario'] = $_SESSION['usuario'];
+			$data["amigos"] = $amigos;
 		}
 		
 		//Cargamos las vistas
