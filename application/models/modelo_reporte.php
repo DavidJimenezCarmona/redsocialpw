@@ -1,15 +1,15 @@
 <?
 class modelo_reporte extends CI_Model {
 
-    $id_usuario_reportado="";
-    $id_usuario_reportador="";
-    $motivo="";
-    $estado=0;
-
     function __construct()
     {
         // Llama al constructor de modelo
         parent::__construct();
+
+        $id_usuario_reportado="";
+        $id_usuario_reportador="";
+        $motivo="";
+        $estado= 1; //Predeterminado es 1 según la BD (Antes ponía 0)
     }
     
     function get_reportes()
@@ -40,6 +40,18 @@ class modelo_reporte extends CI_Model {
     function borrar_reporte()
     {
         $this->db->delete('reporte', $this, array('id' => $_POST['id']));
+    }
+
+    function notificaciones_pendientes($idUser) {
+        $this->db->select(); 
+        $this->db->where('estado',1);
+        $query = $this->db->get('reporte');
+
+        if ($query->num_rows() > 0)
+        {
+            return 1;
+        }
+        return 0;
     }
 
 }

@@ -44,18 +44,26 @@
    <li class='last'><a href='<?= base_url(); ?>index.php/welcome/salir'><span>Salir</span></a></li>
 
 
-<? if (isset($notificaciones) && $notificaciones == 0) {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=".base_url()."img/notificaciones.png></a></li>
+<? if (isset($notificaciones) && $notificaciones == 1) {
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=".base_url()."img/notificaciones.png></a></li>";
+}
+
+else {
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=".base_url()."img/sin_notificaciones.png></a></li>";  
+}
+
+if(isset($usuario) && $usuario->permisos == 1 && isset($reportes) && $reportes == 0) { //Es administrador y no tiene nuevos reportes
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><img class=\"imagen_reporte\" src=".base_url()."img/No_Reportes.png></a></li>
    </ul>
    </div>
    <br><br>";
 }
 
-else {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=".base_url()."img/sin_notificaciones.png></a></li>
+else if(isset($usuario) && $usuario->permisos == 1) {
+   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><img class=\"imagen_reporte\" src=".base_url()."img/Si_Reportes.png></a></li>
    </ul>
    </div>
-   <br><br>";  
+   <br><br>";
 }
 
 ?>

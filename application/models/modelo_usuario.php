@@ -29,15 +29,6 @@ class modelo_usuario extends CI_Model {
             return 0;
         }
     }
-
-    function obtener_id($alias) {
-
-        $this->db->select();
-        $this->db->where('alias', $alias);    
-        $query = $this->db->get('usuario');
-
-        return $query->result_array();
-    }
     
     function get_usuarios()
     {
@@ -69,7 +60,7 @@ class modelo_usuario extends CI_Model {
         $this->db->where('alias', $alias); 
         $query = $this->db->get('usuario');
 
-        $result = $query->result();
+        $result = $query->row();
         return $result;
     }
 

@@ -95,9 +95,9 @@ class modelo_amigo extends CI_Model {
 
         if ($query->num_rows() > 0)
         {
-            return 0;
+            return 1;
         }
-        return 1;
+        return 0;
     }
 
     function aceptar_peticion($id1, $id2) {

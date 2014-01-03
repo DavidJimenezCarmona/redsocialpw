@@ -17,6 +17,7 @@ class Welcome extends CI_Controller {
         $this->load->model('modelo_amigo');
         $this->load->model('modelo_perfil');
         $this->load->model('modelo_ciudad');
+        $this->load->model('modelo_reporte');
     }
 
 	public function cargarInicio()
@@ -36,37 +37,35 @@ class Welcome extends CI_Controller {
 		$this->home();
 	}
 
-	public function cargarAdministracion($usuario) {
-		$_SESSION['usuario'] = $usuario;
-
-		$this->load->view('headers_admin');
-		$this->load->view('cuenta');
-		$this->load->view('footer_comun');
-	}
-
 	//Carga la página de inicio
 	public function home() 
 	{
 		
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
+		$reportes = $this->modelo_reporte->notificaciones_pendientes($_SESSION['usuario']->id);
 
 		$data["perfil"] = $_SESSION['perfil'];
+		$data["usuario"] = $_SESSION['usuario'];
 
-		if($notificaciones == 0) {  //Hay notificaciones pendientes
-			$data["notificaciones"]= 0;
-			//Cargamos las vistas
-			$this->load->view('headers_cuenta',$data);
-			$this->load->view('cuenta', $data);
-			$this->load->view('footer_comun');
+		if($notificaciones == 1) {  //Hay notificaciones pendientes
+			$data["notificaciones"] = 1;
 		}
 
 		else {
-			$data["notificaciones"]= 1;
+			$data["notificaciones"] = 0;
+		}
+
+		if($reportes == 1) {  //Hay reportes disponibles
+			$data["reportes"] = 1;
+		}
+
+		else {
+			$data["reportes"] = 0;
+		}
 			//Cargamos las vistas
 			$this->load->view('headers_cuenta',$data);
 			$this->load->view('cuenta', $data);
 			$this->load->view('footer_comun');
-		}
 	}
 
 	public function modificar_perfil() {
@@ -214,16 +213,11 @@ class Welcome extends CI_Controller {
 		{
 			if($usuario==null)
 			{
-				$this->cargarInicioErroneo();
+				$this->cargarInicioErroneo($usuario);
 			}
 			else
 			{
-				if($usuario->permisos == 0) {  //Es un usuario habitual
-					$this->cargarCuenta($usuario);
-				}
-				else { //Es un usuario administrador
-					$this->cargarAdministracion($usuario);
-				}
+				$this->cargarCuenta($usuario);
 			}
 		}
 	}

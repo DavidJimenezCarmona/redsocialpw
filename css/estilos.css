@@ -282,6 +282,11 @@ font-style: normal;
   width: 1.5em;
 }
 
+.imagen_reporte {
+  height: 1.5em;
+  width: 2.2em;
+}
+
 .derecha {
   float: right;
 }
