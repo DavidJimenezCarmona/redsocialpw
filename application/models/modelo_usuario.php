@@ -115,5 +115,10 @@ class modelo_usuario extends CI_Model {
         $this->db->delete('usuario', $this, array('id' => $_POST['id']));
     }
 
+    function banear_usuario($idUser) {
+        $this->activo = 0;
+        $this->db->update('usuario', $this, array('id' => $idUser));
+    }
+
 }
 ?>

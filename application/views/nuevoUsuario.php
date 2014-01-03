@@ -20,8 +20,9 @@
 	    field_dropdown.replaceWith(result);
 	}		
 </script>
+?>
 
-
+<?
 //Variables para rellenar las fechas
 for($i=0;$i<31;$i++) $dia[$i]=($i+1);
 

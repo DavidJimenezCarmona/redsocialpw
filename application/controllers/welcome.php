@@ -105,10 +105,11 @@ class Welcome extends CI_Controller {
 
 	}
 
-	public function cargarInicioErroneo()
+	public function cargarInicioErroneo($mensaje)
 	{
+		$data["mensaje"] = $mensaje;
 		$this->load->view('headers');
-		$this->load->view('fallo_inicio_sesion');
+		$this->load->view('inicio',$data);
 		$this->load->view('footer');
 	}
 
@@ -208,12 +209,16 @@ class Welcome extends CI_Controller {
 			$this->registro();
 		else
 		{
-			if($usuario==null)
-			{
-				$this->cargarInicioErroneo($usuario);
+			if($usuario==null) {
+				$mensaje = "Usuario y/o contraseña incorrectos.";
+				$this->cargarInicioErroneo($mensaje);
 			}
-			else
-			{
+			else if($usuario->activo == 0) {
+				$mensaje = "Este usuario actualmente esta baneado.";
+				$this->cargarInicioErroneo($mensaje);
+			}
+
+			else {
 				$this->cargarCuenta($usuario);
 			}
 		}

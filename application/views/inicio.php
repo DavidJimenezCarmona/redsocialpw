@@ -11,4 +11,6 @@
 	<a class="enlace" href=/redsocialpw/>¿Has olvidado tu contraseña?</a>
 	<p id="texto_registro"> ¿Aún no formas parte de FSD?</p>
 	<p id="centrado"><?= form_submit('registrate', 'Regístrate'); ?></p>
-</div>
+	<? if(isset($mensaje)) {
+		echo "<p id=\"mensaje_error\">". $mensaje . "</p>"; } ?>
+	</div>
