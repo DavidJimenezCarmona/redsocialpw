@@ -53,7 +53,7 @@ class controlador_mensajes extends CI_Controller
     	//Formateamos para pasarlo al dropdown
     	foreach ($amigos as $reg) 
         {
-            $amigo[$reg['id']] = $reg['alias'];
+            $amigo[$reg->id] = $reg->alias;
         }
 
     	$data['amigos']=$amigo;
