@@ -24,17 +24,15 @@
 <?
 if(isset($perfil)) {
 
-	foreach ($perfil as $perfil_aux) {
 
-		echo "<div class=\"ficha\">
-			<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>
-			<p class=\"texto_perfil\">".$perfil_aux["id_ciudad_nacimiento"]["ciudad"]["nombre"]."</p>
-			<p class=\"texto_perfil\">".$perfil_aux["id_ciudad_residencia"]["ciudad"]["nombre"]."</p>
-			<p class=\"texto_perfil\">".$perfil_aux["ocupacion"]."</p>
-			<p class=\"texto_perfil\">".$perfil_aux["centro_actividad"]."</p>
-			</div>";
+	echo "<div class=\"ficha\">
+		<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>
+		<p class=\"texto_perfil\">".$perfil->ciudad_nacimiento->nombre."</p>
+		<p class=\"texto_perfil\">".$perfil->ciudad_residencia->nombre."</p>
+		<p class=\"texto_perfil\">".$perfil->ocupacion."</p>
+		<p class=\"texto_perfil\">".$perfil->centro_actividad."</p>
+		</div>";
 				
-	}
 
 }
 ?>

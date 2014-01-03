@@ -62,6 +62,12 @@ class Welcome extends CI_Controller {
 		else {
 			$data["reportes"] = 0;
 		}
+
+		//Creamos variables de sesión para las demas vistas:
+
+		$_SESSION['notificaciones'] = $data["notificaciones"];
+		$_SESSION['reportes'] = $data["reportes"];
+
 			//Cargamos las vistas
 			$this->load->view('headers_cuenta',$data);
 			$this->load->view('cuenta', $data);
@@ -71,25 +77,18 @@ class Welcome extends CI_Controller {
 	public function modificar_perfil() {
 
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
+		$data["usuario"] = $_SESSION['usuario'];
 
 		//Pedimos al modelo las provincias y los tipos de actividades
 		$data['provincias'] = $this->modelo_ciudad->get_provincias();
 
-		if($notificaciones == 0) {  //Hay notificaciones pendientes
-			$data["notificaciones"]= 0;
-			//Cargamos las vistas
-			$this->load->view('headers_cuenta', $data);
-			$this->load->view('modificar_perfil');
-			$this->load->view('footer_comun');
-		}
+	 	 $data["notificaciones"] = $_SESSION['notificaciones'];
+		 $data["reportes"] = $_SESSION['reportes'];
 
-		else {
-			$data["notificaciones"]= 1;
 			//Cargamos las vistas
 			$this->load->view('headers_cuenta', $data);
 			$this->load->view('modificar_perfil');
 			$this->load->view('footer_comun');
-		}
 	}
 
 	public function actualizar_perfil() {

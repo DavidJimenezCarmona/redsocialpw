@@ -48,7 +48,7 @@ class modelo_amigo extends CI_Model {
         $query = $this->db->query("SELECT * FROM usuario WHERE id IN (SELECT id_usuario1 FROM amigo WHERE id_usuario2 = '$idUser' AND aceptado = 1 AND id_usuario1 = '$idAmigo')
             OR id IN (SELECT id_usuario2 FROM amigo WHERE id_usuario1 = '$idUser' AND aceptado = 1 AND id_usuario2 = '$idAmigo')");
 
-        return $query->result_array();
+        return $query->row();
 
     }
 

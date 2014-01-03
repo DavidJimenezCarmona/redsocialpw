@@ -16,11 +16,21 @@ class modelo_perfil extends CI_Model {
 
     function get_perfil($id)
     {
-        $this->db->select();
-        $this->db->where('id_usuario', $id); 
-        $query = $this->db->get('perfil');
 
-        return $query->result_array();
+        $query = $this->db->select()
+                          ->where('id_usuario',$id)  
+                          ->get('perfil');
+        $data = $query->row();
+
+        $this->load->model('modelo_ciudad');
+        $ciudad=$this->modelo_ciudad->get_ciudad($data->id_ciudad_residencia);
+        $data->ciudad_residencia=$ciudad;
+
+        $ciudad=$this->modelo_ciudad->get_ciudad($data->id_ciudad_nacimiento);
+        $data->ciudad_nacimiento=$ciudad;
+
+
+        return $data;
     }
 
     function modificar_perfil($idUser, $perfil) {

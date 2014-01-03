@@ -19,10 +19,14 @@ class controlador_mensajes extends CI_Controller
 
     function bandejaEntrada($data=null)
     {
+        $data["usuario"] = $_SESSION['usuario'];
+        $data["notificaciones"] = $_SESSION['notificaciones'];
+        $data["reportes"] = $_SESSION['reportes'];
+
     	//Pedir al modelo los mensajes del usuario
     	$data['mensajes']=$this->modelo_mensaje->get_mensajes($_SESSION['usuario']->id);
 
-    	$this->load->view('headers_cuenta');
+    	$this->load->view('headers_cuenta',$data);
     	$this->load->view('bandeja_entrada', $data);   	
     }
 
@@ -38,6 +42,10 @@ class controlador_mensajes extends CI_Controller
 
     function nuevoMensaje($data=null)
     {
+        $data["usuario"] = $_SESSION['usuario'];
+        $data["notificaciones"] = $_SESSION['notificaciones'];
+        $data["reportes"] = $_SESSION['reportes'];
+
     	//Pedir al modelo los amigos del usuario
     	$amigos=$this->modelo_amigo->get_amigos($_SESSION['usuario']->id);
 
@@ -51,7 +59,7 @@ class controlador_mensajes extends CI_Controller
     	$data['amigos']=$amigo;
 
     	//Cargamos la vista
-    	$this->load->view('headers_cuenta');
+    	$this->load->view('headers_cuenta',$data);
     	$this->load->view('nuevo_mensaje', $data);
     }
 

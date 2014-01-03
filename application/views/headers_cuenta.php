@@ -7,7 +7,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Chau+Philomene+One' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href='<?= base_url(); ?>/img/logo.png' />
 		<title>FriendShipDiary</title>
-	</head>
 
    <div id='cssmenu'>
 <ul>
@@ -52,18 +51,27 @@ else {
    echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=".base_url()."img/sin_notificaciones.png></a></li>";  
 }
 
+if(isset($usuario) && $usuario->permisos == 0) {  //Si no es administrador cierro ya la barra
+   echo "</ul>
+   </div>
+   <br><br>
+   </head>";
+}
+
 if(isset($usuario) && $usuario->permisos == 1 && isset($reportes) && $reportes == 0) { //Es administrador y no tiene nuevos reportes
    echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><img class=\"imagen_reporte\" src=".base_url()."img/No_Reportes.png></a></li>
    </ul>
    </div>
-   <br><br>";
+   <br><br>
+   </head>";
 }
 
 else if(isset($usuario) && $usuario->permisos == 1) {
    echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><img class=\"imagen_reporte\" src=".base_url()."img/Si_Reportes.png></a></li>
    </ul>
    </div>
-   <br><br>";
+   <br><br>
+   </head>";
 }
 
 ?>
