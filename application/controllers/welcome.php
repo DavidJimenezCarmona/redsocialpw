@@ -93,8 +93,8 @@ class Welcome extends CI_Controller {
 
 	public function actualizar_perfil() {
 
-		$perfil['id_ciudad_residencia']=$_POST['id_ciudad_residencia'];
-		$perfil['id_ciudad_nacimiento']=$_POST['id_ciudad_nacimiento'];
+		$perfil['id_ciudad_nacimiento']=$_POST['municipios1'];
+		$perfil['id_ciudad_recidencia']=$_POST['municipios2'];
 		$perfil['ocupacion']=$_POST['ocupacion'];
 		$perfil['centro_actividad']=$_POST['centro_actividad'];
 
@@ -120,9 +120,11 @@ class Welcome extends CI_Controller {
 
 	public function registro() 
 	{
+		$data['provincias'] = $this->modelo_ciudad->get_provincias();
+
 		//Cargamos la página de registro
 		$this->load->view('headers');
-		$this->load->view('nuevoUsuario');
+		$this->load->view('nuevoUsuario',$data);
 		$this->load->view('footer');	
 	}
 
@@ -151,13 +153,7 @@ class Welcome extends CI_Controller {
 			$usuario['nombre']=$_POST['nombre'];
 			$usuario['apellidos']=$_POST['apellidos'];
 			$usuario['fecha_nacimiento']=(2013 - $_POST['anyo']).'-'.($_POST['mes']+1).'-'.($_POST['dia']+1);
-			if($_POST['sexo'] == "Mujer") {
-				$usuario['sexo'] = 0;
-			}
-
-			else {
-				$usuario['sexo'] = 1;
-			}
+			$usuario['sexo'] = $_POST['sexo'];
 			$usuario['email']=$_POST['email'];
 
 			//Comprobamos que todos los campos se hayan insertdo
@@ -183,6 +179,8 @@ class Welcome extends CI_Controller {
 				//Creamos el perfil asociado (actualmente en blanco) al nuevo usuario
 
 				$data['id_usuario'] = mysql_insert_id();
+				$data['id_ciudad_nacimiento']=$_POST['municipios1'];
+				$data['id_ciudad_recidencia']=$_POST['municipios2'];
 				$this->modelo_perfil->insertar_perfil($data);
 
 				//Cargamos la página de inicio pasándole el usuario que acabamos de insertar
