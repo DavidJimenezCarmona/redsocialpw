@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
         $this->load->model('modelo_perfil');
         $this->load->model('modelo_ciudad');
         $this->load->model('modelo_reporte');
+        $this->load->model('modelo_actividad');
     }
 
 	public function cargarInicio()
@@ -77,18 +78,16 @@ class Welcome extends CI_Controller {
 	public function modificar_perfil() {
 
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
-		$data["usuario"] = $_SESSION['usuario'];
 
 		//Pedimos al modelo las provincias y los tipos de actividades
 		$data['provincias'] = $this->modelo_ciudad->get_provincias();
+		$data['municipiosIniciales'] = $this->modelo_ciudad->get_ciudades(2);
 
-	 	 $data["notificaciones"] = $_SESSION['notificaciones'];
-		 $data["reportes"] = $_SESSION['reportes'];
+		//Cargamos las vistas
+		$this->load->view('headers_cuenta');
+		$this->load->view('modificar_perfil',$data);
+		$this->load->view('footer_comun');
 
-			//Cargamos las vistas
-			$this->load->view('headers_cuenta', $data);
-			$this->load->view('modificar_perfil');
-			$this->load->view('footer_comun');
 	}
 
 	public function actualizar_perfil() {

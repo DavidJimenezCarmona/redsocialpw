@@ -11,13 +11,8 @@ class controlador_contacto extends CI_Controller {
     }
 
 	public function contacta() 
-	{
-		//Cargamos las vistas
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-		
-		$this->load->view('headers_cuenta',$data);
+	{	
+		$this->load->view('headers_cuenta');
 		$this->load->view('contacto');
 		$this->load->view('footer_comun');
 	}

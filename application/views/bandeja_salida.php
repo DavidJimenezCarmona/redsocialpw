@@ -1,4 +1,4 @@
-<h1 id="tituloActividad"> Bandeja de entrada </h1>
+<h1 id="tituloActividad"> Bandeja de salida </h1>
 
 <div class='divTablaMensajes'>
 <table class='tablaMensajes'>
@@ -21,8 +21,8 @@
 					echo "<td>".$mensaje['fecha']."</td>";
 					echo "<td>".$mensaje['alias_emisor']."</td>";
 					echo "<td>".$mensaje['titulo']."</td>";
-					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/verMensaje/".$mensaje['id']."'> Ver </A></td>";
-					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/borrarMensaje/".$mensaje['id']."'> Borrar </A></td>";
+					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/verMensajeSalida/".$mensaje['id']."'> Ver </A></td>";
+					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/borrarMensajeSalida/".$mensaje['id']."'> Borrar </A></td>";
 				echo "</tr>";
 		}
 	}
@@ -41,12 +41,3 @@
 	}
 ?>
 </div>
-
-
-
-
-
-
-
-
-

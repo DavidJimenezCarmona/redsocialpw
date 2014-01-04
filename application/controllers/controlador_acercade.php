@@ -12,12 +12,7 @@ class controlador_acercade extends CI_Controller {
 
 	public function sobre_nosotros() 
 	{
-		//Cargamos las vistas
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('acerca_nosotros');
 		$this->load->view('footer_comun');
 	}

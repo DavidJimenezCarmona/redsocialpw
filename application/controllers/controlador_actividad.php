@@ -17,24 +17,30 @@ class controlador_actividad extends CI_Controller
 
 	public function nuevaActividad($data="")
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
 		//Pedimos al modelo las provincias y los tipos de actividades
 		$data['provincias'] = $this->modelo_ciudad->get_provincias();
 		$data['tipo'] = $this->modelo_tipo->get_tipos();
 		//Cargamos las vistas
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('nueva_actividad', $data);
 		
 	}
 
 	public function municipios()
 	{
-		$codprov = $this->input->get('id');
+		if(isset ($id))
+			$codprov = $id;
+		else
+			$codprov = $this->input->get('id');
 		//Pedimos al modelo los municipios
 		echo form_dropdown('municipios', $this->modelo_ciudad->get_ciudades($codprov), null, "id='municipios'"); 
+	}
+	public function municipiosR()
+	{
+
+		$codprov = $this->input->get('id');
+		//Pedimos al modelo los municipios
+		echo form_dropdown('municipio', $this->modelo_ciudad->get_ciudades($codprov), null, "id='municipio'"); 
 	}
 
 	public function guardarActividad()
@@ -73,14 +79,10 @@ class controlador_actividad extends CI_Controller
 
 	public function verActividades($data=null)
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
 		//Pedimos al modelo las actividades del usuario
 		$data['actividades']=$this->modelo_usuario_actividad->get_actividades($_SESSION['usuario']->id);
 
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('ver_actividades', $data);
 	}
 
@@ -117,13 +119,9 @@ class controlador_actividad extends CI_Controller
 
 	public function buscarActividades($data=null)
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
 		//Pedimos al modelo las provincias
 		$data['provincias'] = $this->modelo_ciudad->get_provincias();
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('buscar_actividades', $data);
 	}
 

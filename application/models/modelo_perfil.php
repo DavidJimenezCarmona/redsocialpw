@@ -1,4 +1,4 @@
-<?
+    <?
 class modelo_perfil extends CI_Model {
 
     function __construct()
@@ -28,7 +28,6 @@ class modelo_perfil extends CI_Model {
 
         $ciudad=$this->modelo_ciudad->get_ciudad($data->id_ciudad_nacimiento);
         $data->ciudad_nacimiento=$ciudad;
-
 
         return $data;
     }

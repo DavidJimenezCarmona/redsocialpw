@@ -19,14 +19,10 @@ class controlador_mensajes extends CI_Controller
 
     function bandejaEntrada($data=null)
     {
-        $data["usuario"] = $_SESSION['usuario'];
-        $data["notificaciones"] = $_SESSION['notificaciones'];
-        $data["reportes"] = $_SESSION['reportes'];
-
     	//Pedir al modelo los mensajes del usuario
     	$data['mensajes']=$this->modelo_mensaje->get_mensajes($_SESSION['usuario']->id);
 
-    	$this->load->view('headers_cuenta',$data);
+    	$this->load->view('headers_cuenta');
     	$this->load->view('bandeja_entrada', $data);   	
     }
 
@@ -40,12 +36,42 @@ class controlador_mensajes extends CI_Controller
     	$this->bandejaEntrada($data);
     }
 
+    function verMensajeSalida($id)
+    {
+        //Pedir al modelo el mensaje
+        $data['mensajeAbierto']=$this->modelo_mensaje->get_mensaje($id);
+        //Marcar el mensaje como leido
+        $data['mensajeAbierto']->visto =1;
+        $this->modelo_mensaje->modificar_mensaje($data['mensajeAbierto']);
+        $this->bandejaSalida($data);
+    }
+
+    function borrarMensaje($id)
+    {
+        //Pedir al modelo el mensaje
+        $mensaje=$this->modelo_mensaje->get_mensaje($id);
+        //Marcamos el mensaje como borrado
+        $mensaje->borrado_receptor=1;
+        //Guardamos el mensaje con sus nuevos valores
+        $this->modelo_mensaje->modificar_mensaje($mensaje);
+        //Volvemos a cargar la vista
+        $this->bandejaEntrada();
+    }
+
+    function borrarMensajeSalida($id)
+    {
+        //Pedir al modelo el mensaje
+        $mensaje=$this->modelo_mensaje->get_mensaje($id);
+        //Marcamos el mensaje como borrado
+        $mensaje->borrado_emisor=1;
+        //Guardamos el mensaje con sus nuevos valores
+        $this->modelo_mensaje->modificar_mensaje($mensaje);
+        //Volvemos a cargar la vista
+        $this->bandejaSalida();
+    }
+
     function nuevoMensaje($data=null)
     {
-        $data["usuario"] = $_SESSION['usuario'];
-        $data["notificaciones"] = $_SESSION['notificaciones'];
-        $data["reportes"] = $_SESSION['reportes'];
-
     	//Pedir al modelo los amigos del usuario
     	$amigos=$this->modelo_amigo->get_amigos($_SESSION['usuario']->id);
 
@@ -59,7 +85,7 @@ class controlador_mensajes extends CI_Controller
     	$data['amigos']=$amigo;
 
     	//Cargamos la vista
-    	$this->load->view('headers_cuenta',$data);
+    	$this->load->view('headers_cuenta');
     	$this->load->view('nuevo_mensaje', $data);
     }
 
@@ -73,7 +99,6 @@ class controlador_mensajes extends CI_Controller
 		$mensaje->fecha=mdate("%Y-%m-%d", time());
 		$mensaje->visto=0;
 
-
 		//Le pasamos al modelo el mensaje para insertarlo
 		$this->modelo_mensaje->insertar_mensaje($mensaje);
 
@@ -82,8 +107,15 @@ class controlador_mensajes extends CI_Controller
 
 		//Cargamos la vista de nuevo mensaje
 		$this->nuevoMensaje($data);
+    }
 
+    function bandejaSalida($data=null)
+    {
+        //Pedir al modelo los mensajes del usuario
+        $data['mensajes']=$this->modelo_mensaje->get_mensajes_enviados($_SESSION['usuario']->id);
 
+        $this->load->view('headers_cuenta');
+        $this->load->view('bandeja_salida', $data);    
     }
 }
 

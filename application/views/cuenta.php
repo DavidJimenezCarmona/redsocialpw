@@ -24,13 +24,14 @@
 <?
 if(isset($perfil)) {
 
-
-	echo "<div class=\"ficha\">
-		<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>
-		<p class=\"texto_perfil\">".$perfil->ciudad_nacimiento->nombre."</p>
-		<p class=\"texto_perfil\">".$perfil->ciudad_residencia->nombre."</p>
-		<p class=\"texto_perfil\">".$perfil->ocupacion."</p>
-		<p class=\"texto_perfil\">".$perfil->centro_actividad."</p>
+	echo "<div class=\"ficha\"
+		<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>";
+		if(isset ($_SESSION['perfil']->ciudad_nacimiento['nombre']))
+			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_nacimiento['nombre']."</p>";
+		if(isset ($_SESSION['perfil']->ciudad_residencia['nombre']))
+			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_residencia['nombre']."</p>
+		<p class=\"texto_perfil\">".$_SESSION['perfil']->ocupacion."</p>
+		<p class=\"texto_perfil\">".$_SESSION['perfil']->centro_actividad."</p>
 		</div>";
 				
 

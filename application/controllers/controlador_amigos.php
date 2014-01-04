@@ -16,12 +16,8 @@ class controlador_amigos extends CI_Controller {
 
 	public function buscar_amigos() 
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
 		//Cargamos las vistas
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('buscar_amigos');
 		$this->load->view('footer_comun');
 	}
@@ -55,25 +51,17 @@ class controlador_amigos extends CI_Controller {
 
 	public function mostrar_usuarios($data) 
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
 		//Cargamos las vistas
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_usuarios',$data);
 		$this->load->view('footer_comun');
 	}
 
 	public function agregar_amigo($id) 
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
-
 		if($this->modelo_amigo->es_amigo($_SESSION['usuario']->id, $id) == 0) 
 		{
-			$this->load->view('headers_cuenta',$data);
+			$this->load->view('headers_cuenta');
 			$data['mensaje'] = "Ya le enviaste una petición de amistad a este usuario con anterioridad, 
 			por favor espera a que éste la responda 
 			o asegurate de que no se encuentra ya en tu lista de amigos.";
@@ -83,7 +71,7 @@ class controlador_amigos extends CI_Controller {
 		else 
 		{
 			$this->modelo_amigo->insertar_amigo($_SESSION['usuario']->id,$id);
-			$this->load->view('headers_cuenta',$data);
+			$this->load->view('headers_cuenta');
 			$data['mensaje'] = "La petición de amistad de ha enviado correctamente, 
 			espera a que el usuario la responda 
 			y aparecerá en tu lista de  amigos.";
@@ -97,9 +85,6 @@ class controlador_amigos extends CI_Controller {
 		$amigo = $this->modelo_amigo->get_amigo($_SESSION['usuario']->id,$id);
 
 		$data["amigo"] = $amigo;
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
 
 		//Recuperamos además los datos del perfil del anterior amigo:
 
@@ -107,7 +92,7 @@ class controlador_amigos extends CI_Controller {
 
 		//Cargamos las vistas
 
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_perfil', $data);
 		$this->load->view('footer_comun');
 	}
@@ -115,9 +100,6 @@ class controlador_amigos extends CI_Controller {
 	public function mostrar_amigos() 
 	{
 		$amigos = $this->modelo_amigo->get_amigos($_SESSION['usuario']->id);
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
 
 		if($amigos == null) 
 		{
@@ -131,40 +113,30 @@ class controlador_amigos extends CI_Controller {
 		}
 		
 		//Cargamos las vistas
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_amigos',$data);
 		$this->load->view('footer_comun');
 	}
 
 	public function mostrar_peticiones() 
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
 		$peticiones = $this->modelo_amigo->get_peticiones($_SESSION['usuario']->id);
 
 		if($peticiones == null) 
-		{
 			$data['mensaje'] = "No tiene actualmente peticiones de amistad disponibles.";
-		}
 		else 
-		{
 			$data['peticiones'] = $peticiones;
-		}
 
 		//Cargamos las vistas
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_peticiones',$data);
 		$this->load->view('footer_comun');
 	}
 
 	public function aceptar_peticion($id1, $id2) 
 	{
-		$data["usuario"] = $_SESSION['usuario'];
-		$data["notificaciones"] = $_SESSION['notificaciones'];
-		$data["reportes"] = $_SESSION['reportes'];
 		$peticiones = $this->modelo_amigo->aceptar_peticion($id1, $id2);
-		$this->load->view('headers_cuenta',$data);
+		$this->load->view('headers_cuenta');
 		$data['mensaje'] = "Has aceptado la petición de amistad, ahora puedes encontrar a este usuario en tu lista de amigos!";
 		$this->load->view('notificacion', $data);
 		$this->load->view('footer_comun');
