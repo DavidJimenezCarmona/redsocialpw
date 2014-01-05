@@ -24,6 +24,7 @@ class modelo_usuario_actividad extends CI_Model {
 
         $this->load->model('modelo_actividad');
 
+        $data = array();
         foreach ($query->result() as $id_actividad) 
             $data[$id_actividad->id_actividad] = $this->modelo_actividad->get_actividad($id_actividad->id_actividad);
 

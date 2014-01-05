@@ -36,10 +36,11 @@ class Welcome extends CI_Controller {
 		$perfil=$this->modelo_perfil->get_perfil($usuario->id);
 		$_SESSION['perfil'] = $perfil;
 		$this->home();
+
 	}
 
 	//Carga la página de inicio
-	public function home() 
+	public function home($data=null) 
 	{
 		
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
@@ -90,18 +91,17 @@ class Welcome extends CI_Controller {
 
 	}
 
-	public function actualizar_perfil() {
+	public function actualizar_perfil() 
+	{
+		$perfil->id_ciudad_nacimiento=$_POST['municipios'];
+		$perfil->id_ciudad_residencia=$_POST['municipio'];
+		$perfil->ocupacion=$_POST['ocupacion'];
+		$perfil->centro_actividad=$_POST['centro_actividad'];
+		$perfil->foto=$_SESSION['perfil']->foto;
 
-		$perfil['id_ciudad_nacimiento']=$_POST['municipios1'];
-		$perfil['id_ciudad_recidencia']=$_POST['municipios2'];
-		$perfil['ocupacion']=$_POST['ocupacion'];
-		$perfil['centro_actividad']=$_POST['centro_actividad'];
-
-		$this->modelo_perfil->modificar_perfil($_SESSION['usuario']->id,$perfil);
-
-		echo "Los datos se han actualizado correctamente.";
-
-
+		$this->modelo_perfil->modificar_perfil($perfil);
+		$_SESSION['perfil']=$perfil;
+		$this->home();
 	}
 
 	public function cargarInicioErroneo($mensaje)
@@ -174,14 +174,11 @@ class Welcome extends CI_Controller {
 
 			else
 			{
-				//Llamamos al método del model que crea un nuevo usuario
+				//Llamamos al método del modelo que crea un nuevo usuario
 				$this->modelo_usuario->insertar_usuario($usuario);
-				//Creamos el perfil asociado (actualmente en blanco) al nuevo usuario
-
-				$data['id_usuario'] = mysql_insert_id();
-				$data['id_ciudad_nacimiento']=$_POST['municipios1'];
-				$data['id_ciudad_recidencia']=$_POST['municipios2'];
-				$this->modelo_perfil->insertar_perfil($data);
+				//Creamos un nuevo perfil para el usuario insertado
+				$usuario['id'] = mysql_insert_id();
+				$this->modelo_perfil->insertar_perfil($usuario['id']);
 
 				//Cargamos la página de inicio pasándole el usuario que acabamos de insertar
 				$this->cargarCuenta($this->modelo_usuario->get_usuario_alias($usuario['alias']));
@@ -220,6 +217,46 @@ class Welcome extends CI_Controller {
 			else {
 				$this->cargarCuenta($usuario);
 			}
+		}
+	}
+
+	public function subirFoto()
+	{
+		if($_SESSION['perfil']->foto==1)
+		{
+			$file = './img/fotos_perfil/' . $_SESSION['usuario']->alias . ".jpg";
+			$do = unlink($file);
+	 
+			if($do != true)
+			{
+	 			echo "Error borrando el archivo <br />";
+	 		}
+	 		else
+	 		{
+	 			$_SESSION['perfil']->foto=0;
+				$this->modelo_perfil->modificar_perfil($_SESSION['perfil']);
+	 		}
+ 		}
+
+		$config['upload_path'] = './img/fotos_perfil/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['file_name'] = $_SESSION['usuario']->alias . ".jpg";
+		
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload())
+		{
+			$data['error'] = array('error' => $this->upload->display_errors());
+
+			$this->home($data);
+		}	
+		else
+		{
+			$data['upload_data'] = array('upload_data' => $this->upload->data());
+			
+			$_SESSION['perfil']->foto=1;
+			$this->modelo_perfil->modificar_perfil($_SESSION['perfil']);
+			$this->home($data);
 		}
 	}
 

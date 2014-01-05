@@ -1,9 +1,5 @@
 <div class="derecha">
 	<? 
-		//Propagamos la sesión
-		if(!isset($_SESSION)) 
-	        session_start(); 
-
 	    //Creamos el objeto usuario
 		$usuario=$_SESSION['usuario'];
 
@@ -13,24 +9,41 @@
 		else
 			echo '<p id="saludo"> Bienvenido ' . $usuario->alias . '</p>' ;
 	?>
-	<? echo form_open('welcome/modificar_perfil'); ?>
-	<p><?= form_submit('Modificar perfil', 'Modificar perfil'); ?></p>
+
+	<a id='botonNoir' href='modificar_perfil'> Modificar perfil </A>
 </div>
 
-<div id="avatar"> <? //Si no tiene foto (Hay que comprobarlo en su perfil), se carga una por defecto ?>
-	<img id="logo" src="<?= base_url();?>img/avatar.jpg"/>
-</div>
+<? 
+	if($_SESSION['perfil']->foto==0)
+	{ ?>
+		<div id="avatar"> 
+			<img id="logo" src="<?= base_url();?>img/avatar.jpg"/>
+			<br>
+<?	}
+	else
+	{?>
+		<div id="avatar"> 
+			<img id="logo" src="<?= base_url();?>img/fotos_perfil/<?= $_SESSION['usuario']->alias ?>.jpg"/>
+			<br>
+<?	}	?>
+	<?=form_open_multipart('welcome/subirFoto'); ?>
+		<input type="file" name="userfile" size="20" />
+		<br /><br />
+	<input type="submit" value="upload" />
+
+		</div>
 
 <?
 if(isset($perfil)) {
 
 	echo "<div class=\"ficha\"
 		<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>";
-		if(isset ($_SESSION['perfil']->ciudad_nacimiento['nombre']))
-			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_nacimiento['nombre']."</p>";
-		if(isset ($_SESSION['perfil']->ciudad_residencia['nombre']))
-			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_residencia['nombre']."</p>
-		<p class=\"texto_perfil\">".$_SESSION['perfil']->ocupacion."</p>
+		if(isset ($_SESSION['perfil']->ciudad_nacimiento->nombre))
+			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_nacimiento->nombre."</p>";
+		if(isset ($_SESSION['perfil']->ciudad_residencia->nombre))
+			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_residencia->nombre."</p>";
+		
+		echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ocupacion."</p>
 		<p class=\"texto_perfil\">".$_SESSION['perfil']->centro_actividad."</p>
 		</div>";
 				

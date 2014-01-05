@@ -8,6 +8,7 @@
 	<td>Asunto</td>
 	<td>Ver</td>
 	<td>Borrar</td>
+	<td>Reportar</td>
 </tr>
 <?
 	if (is_array($mensajes))
@@ -23,11 +24,20 @@
 					echo "<td>".$mensaje['titulo']."</td>";
 					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/verMensaje/".$mensaje['id']."'> Ver </A></td>";
 					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/borrarMensaje/".$mensaje['id']."'> Borrar </A></td>";
+					echo "<td><a id='botonMensaje' href='".base_url()."index.php/controlador_mensajes/reportarMensaje/".$mensaje['id']."'> Reportar </A></td>";				
 				echo "</tr>";
 		}
 	}
 ?>
 </table>
+
+<p id="mensaje_error">
+	<?
+		if(isset($confirmacion))
+			echo $confirmacion;
+	?>
+</p>
+
 <?
 //Si se ha seleccionado, mostramos el mensaje
 	if(isset($mensajeAbierto))

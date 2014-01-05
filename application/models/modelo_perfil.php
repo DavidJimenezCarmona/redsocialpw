@@ -32,14 +32,15 @@ class modelo_perfil extends CI_Model {
         return $data;
     }
 
-    function modificar_perfil($idUser, $perfil) {
+    function modificar_perfil($perfil) {
 
-        $this->id_ciudad_residencia = $perfil['id_ciudad_residencia'];
-        $this->id_ciudad_nacimiento = $perfil['id_ciudad_nacimiento'];
-        $this->ocupacion = $perfil['ocupacion'];
-        $this->centro_actividad = $perfil['centro_actividad'];
+        $this->id_ciudad_residencia = $perfil->id_ciudad_residencia;
+        $this->id_ciudad_nacimiento = $perfil->id_ciudad_nacimiento;
+        $this->ocupacion = $perfil->ocupacion;
+        $this->centro_actividad = $perfil->centro_actividad;
+        $this->foto = $perfil->foto;
 
-        $this->db->update('perfil', $this, array('id_usuario' => $idUser));
+        $this->db->update('perfil', $this, array('id_usuario' => $_SESSION['usuario']->id));
     }
 
 
@@ -49,10 +50,9 @@ class modelo_perfil extends CI_Model {
         return $query->result();
     }
 
-    function insertar_perfil($data)
+    function insertar_perfil($usuario)
     {
-        $this->id_usuario = $data['id_usuario'];
-
+        $this->id_usuario = $usuario;
         $this->db->insert('perfil', $this);
     }
 

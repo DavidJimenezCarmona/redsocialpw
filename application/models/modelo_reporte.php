@@ -21,15 +21,9 @@ class modelo_reporte extends CI_Model {
         return $query->result();
     }
 
-    function insertar_reporte($idReportador, $idReportado)
+    function insertar_reporte($reporte)
     {
-        $this->id_usuario_reportador = $idReportador;
-        $this->id_usuario_reportado = $idReportado;
-        $this->motivo = "Este usuario ha sido reportado automáticamente por un admin por algún comportamiento indebido.";
-        $this->estado = 0; //No tiene que llegar notificación porque ha sido reportado por un admin
-        $this->db->insert('reporte', $this);
-        $this->load->model('modelo_usuario');
-        $this->modelo_usuario->banear_usuario($idReportado); //Se banea directamente al usuario por ser petición de un admin.
+        $this->db->insert('reporte', $reporte);
     }
 
     function modificar_reporte($idReporte)

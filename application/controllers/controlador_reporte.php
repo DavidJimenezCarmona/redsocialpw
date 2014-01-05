@@ -27,7 +27,7 @@ class controlador_reporte extends CI_Controller {
         }
 
         //Cargamos las vistas
-        $this->load->view('headers_cuenta';
+        $this->load->view('headers_cuenta');
         $this->load->view('mostrar_reportes',$data);
         $this->load->view('footer_comun');
     }
@@ -68,7 +68,7 @@ class controlador_reporte extends CI_Controller {
         $_SESSION['reportes'] = $this->modelo_reporte->notificaciones_pendientes(); //Volvemos a calcularlo ya que hemos quitado 1
         $data["reportes"] = $_SESSION['reportes'];
         $this->load->view('headers_cuenta');
-        $data['mensaje'] = "El usuario se ha baneado y se ha creado correctamente el reporte que lo notifica.";
+        $data['mensaje'] = "El usuario se ha baneado.";
         $this->load->view('notificacion', $data);
         $this->load->view('footer_comun');
     }

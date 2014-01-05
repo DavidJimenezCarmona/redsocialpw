@@ -59,9 +59,7 @@ class modelo_usuario extends CI_Model {
         $this->db->select();
         $this->db->where('alias', $alias); 
         $query = $this->db->get('usuario');
-
-        $result = $query->result();
-        return $result;
+        return $query->row();
     }
 
     function login($alias, $pass)
@@ -84,10 +82,7 @@ class modelo_usuario extends CI_Model {
         $this->pass=md5($usuario['pass']);
         $this->nombre=$usuario['nombre'];
         $this->apellidos=$usuario['apellidos'];
-        if ($usuario['sexo']=='Hombre' || 'hombre' || 'HOMBRE')
-            $this->sexo=1; 
-        else
-            $this->sexo=0;
+        $this->sexo=$usuario['sexo'];
         $this->fecha_nacimiento=$usuario['fecha_nacimiento'];
         $this->email=$usuario['email'];
         $this->activo=1; //1 activo, 0 inactivo

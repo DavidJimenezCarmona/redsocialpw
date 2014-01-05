@@ -12,6 +12,7 @@ class controlador_mensajes extends CI_Controller
 		//Activamos los modelos que vamos a usar
 		$this->load->model('modelo_mensaje');
 		$this->load->model('modelo_amigo');
+        $this->load->model('modelo_reporte');
 
 		//Activamos los helpers que vamos a usar
 		$this->load->helper('date');
@@ -116,6 +117,24 @@ class controlador_mensajes extends CI_Controller
 
         $this->load->view('headers_cuenta');
         $this->load->view('bandeja_salida', $data);    
+    }
+
+    function reportarMensaje($id)
+    {
+        //Pedir al modelo el mensaje
+        $mensaje=$this->modelo_mensaje->get_mensaje($id);
+
+        //Creamos un nuevo reporte
+        $reporte->id_usuario_reportado=$mensaje->id_usuario_emisor;
+        $reporte->id_usuario_reportador=$mensaje->id_usuario_receptor;
+        $reporte->motivo=$mensaje->contenido;
+
+        //Guardamos el reporte en la bd
+        $this->modelo_reporte->insertar_reporte($reporte);
+
+        $data['confirmacion']="Has reportado el mensaje como inadecuado";
+        //Volvemos a cargar la vista
+        $this->bandejaEntrada($data);   
     }
 }
 
