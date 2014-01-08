@@ -267,7 +267,6 @@ font-style: normal;
 .bloque_centrado_arriba {
 	float: left;
 	margin-left: 25em;
-	position: absolute;
 }
 
 .bloque_busqueda {
@@ -310,6 +309,7 @@ font-style: normal;
   background: #3b5998;
   border-radius: 10px;
   color: white;
+  padding: 0.5em;
 }
 
 #botonNoir

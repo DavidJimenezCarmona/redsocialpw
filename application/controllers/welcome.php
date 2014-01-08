@@ -46,33 +46,25 @@ class Welcome extends CI_Controller {
 		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
 		$reportes = $this->modelo_reporte->notificaciones_pendientes($_SESSION['usuario']->id);
 
-		$data["perfil"] = $_SESSION['perfil'];
-		$data["usuario"] = $_SESSION['usuario'];
-
 		if($notificaciones == 1) {  //Hay notificaciones pendientes
-			$data["notificaciones"] = 1;
+			$_SESSION["notificaciones"] = 1;
 		}
 
 		else {
-			$data["notificaciones"] = 0;
+			$_SESSION["notificaciones"] = 0;
 		}
 
 		if($reportes == 1) {  //Hay reportes disponibles
-			$data["reportes"] = 1;
+			$_SESSION["reportes"] = 1;
 		}
 
 		else {
-			$data["reportes"] = 0;
+			$_SESSION["reportes"] = 0;
 		}
-
-		//Creamos variables de sesión para las demas vistas:
-
-		$_SESSION['notificaciones'] = $data["notificaciones"];
-		$_SESSION['reportes'] = $data["reportes"];
 
 			//Cargamos las vistas
 			$this->load->view('headers_cuenta',$data);
-			$this->load->view('cuenta', $data);
+			$this->load->view('cuenta');
 			$this->load->view('footer_comun');
 	}
 

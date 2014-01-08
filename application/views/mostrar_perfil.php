@@ -7,8 +7,14 @@ if(isset($amigo)) {
 		else {
 			$sexo = "Mujer";
 		}
-		echo "<div class=\"ficha\">
-				<p class=\"titulo_perfil\"> Datos del usuario </p>
+		echo "<div class=\"ficha\">";
+
+				if($perfil->foto==1)
+					echo "<div id='avatar'> <img id='logo' src='". base_url() ."img/fotos_perfil/".$amigo->alias."'/><br></div>";
+				else 	
+					echo "<div id='avatar'> <img id='logo' src='". base_url() ."img/avatar.jpg'/><br></div>";
+
+				echo "<p class=\"titulo_perfil\"> Datos del usuario </p>
 				<p class=\"texto_perfil\">".$amigo->alias."</p>
 				<p class=\"texto_perfil\">".$amigo->nombre."</p>
 				<p class=\"texto_perfil\">".$amigo->apellidos."</p>
@@ -19,10 +25,15 @@ if(isset($amigo)) {
 		if(isset($perfil)) {
 
 			echo "<div class=\"ficha\">
-			<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>
-			<p class=\"texto_perfil\">".$perfil->ciudad_nacimiento->nombre."</p>
-			<p class=\"texto_perfil\">".$perfil->ciudad_residencia->nombre."</p>
-			<p class=\"texto_perfil\">".$perfil->ocupacion."</p>
+			<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>";
+
+			if (isset($perfil->ciudad_nacimiento->nombre))
+				echo "<p class=\"texto_perfil\">".$perfil->ciudad_nacimiento->nombre."</p>";
+
+			if (isset($perfil->ciudad_residencia->nombre))
+				echo "<p class=\"texto_perfil\">".$perfil->ciudad_residencia->nombre."</p>";
+
+			echo "<p class=\"texto_perfil\">".$perfil->ocupacion."</p>
 			<p class=\"texto_perfil\">".$perfil->centro_actividad."</p>
 			</div>";
 				

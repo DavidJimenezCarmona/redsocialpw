@@ -38,7 +38,6 @@ class controlador_amigos extends CI_Controller {
 			{
 				$data['amigos'] = $amigos;
 			}
-
 			$this->mostrar_usuarios($data);
 		}
 		else 
@@ -100,6 +99,10 @@ class controlador_amigos extends CI_Controller {
 	{
 		$amigos = $this->modelo_amigo->get_amigos($_SESSION['usuario']->id);
 
+		foreach ($amigos as $amigo) {
+			$amigo->perfil = $this->modelo_perfil->get_perfil($amigo->id);
+		}
+
 		if($amigos == null) 
 		{
 			$data['mensaje'] = "No hay amigos que mostrar actualmente. 
@@ -110,7 +113,7 @@ class controlador_amigos extends CI_Controller {
 		{
 			$data["amigos"] = $amigos;
 		}
-		
+
 		//Cargamos las vistas
 		$this->load->view('headers_cuenta');
 		$this->load->view('mostrar_amigos',$data);

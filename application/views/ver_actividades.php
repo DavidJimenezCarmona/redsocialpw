@@ -19,6 +19,6 @@
 			echo "Plazas libres: ".$actividad->plazas."<br>";
 			echo "Descripción: ".$actividad->descripcion;
 			echo "<a id='botonNoir' href='noAsistir?actividad=".$actividad->id."'> No asistir </A>";
-		echo "</div>";
+		echo "</div><br>";
 	}
 ?>

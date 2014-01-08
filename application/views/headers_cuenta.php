@@ -45,38 +45,55 @@
    <li class='last'><a href='<?= base_url(); ?>index.php/welcome/salir'><span>Salir</span></a></li>
 
 
-<? if (isset($_SESSION['notificaciones']) && $_SESSION['notificaciones'] == 1) {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=".base_url()."img/notificaciones.png></a></li>";
+<? 
+
+//*****************************************************************************************************************************************
+//***************************************************-PETICIONES AMISTAD-******************************************************************
+//*****************************************************************************************************************************************
+
+
+//Si hay peticiones de amistad
+if (isset($_SESSION['notificaciones']) && $_SESSION['notificaciones'] == 1) 
+{
+   echo "<li class=\"last\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones'><img class=\"imagen_peque\" src=".base_url()."img/notificaciones.png></a></li>";
+}
+else //Si no las hay 
+{
+   echo "<li class=\"last\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=".base_url()."img/sin_notificaciones.png></a></li>";  
 }
 
-else {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_amigos/mostrar_peticiones''><img class=\"imagen_peque\" src=".base_url()."img/sin_notificaciones.png></a></li>";  
-}
+//*****************************************************************************************************************************************
+//***************************************************-NOTIFICACIONES ADMINISTRACIÓN-*******************************************************
+//*****************************************************************************************************************************************
 
-if(isset($_SESSION['usuario']) && $_SESSION['usuario']->permisos == 0) {  //Si no es administrador cierro ya la barra
+//Si el usuario es administrador
+if($_SESSION['usuario']->permisos == 1)
+{
+   //Si tiene nuevos reportes
+   if(isset($_SESSION['reportes']) &&  $_SESSION['reportes']==1)
+   {
+      echo "<li class=\"last\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><span><img class=\"imagen_reporte\" src=".base_url()."img/Si_Reportes.png></spam></a></li>
+      </ul>
+      </div>
+      <br><br>
+      </head>";
+   }
+   else //Si no los tiene
+   {
+      echo "<li class=\"last\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><spam><img class=\"imagen_reporte\" src=".base_url()."img/No_Reportes.png></spam></a></li>
+      </ul>
+      </div>
+      <br><br>
+      </head>";
+   }
+}
+else //Si no lo es
+{
    echo "</ul>
    </div>
    <br><br>
    </head>";
 }
 
-if(isset($_SESSION['usuario']) && $_SESSION['usuario']->permisos == 1 && isset($reportes) && $reportes == 0) { //Es administrador y no tiene nuevos reportes
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><img class=\"imagen_reporte\" src=".base_url()."img/No_Reportes.png></a></li>
-   </ul>
-   </div>
-   <br><br>
-   </head>";
-}
-
-else if(isset($_SESSION['usuario']) && $_SESSION['usuario']->permisos == 1) {
-   echo "<li class=\"derecha\"><a href='".base_url()."index.php/controlador_reporte/mostrar_reportes''><img class=\"imagen_reporte\" src=".base_url()."img/Si_Reportes.png></a></li>
-   </ul>
-   </div>
-   <br><br>
-   </head>";
-}
-
 ?>
-
-
 <body id="body_interior_cuenta">
