@@ -1,3 +1,5 @@
+<h1 id='tituloActividad'>Buscar amigos</h1>
+
 <? 
 
 if(isset($mensaje)) {

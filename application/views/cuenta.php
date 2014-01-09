@@ -34,6 +34,7 @@
 		</div>
 
 <?
+$base = base_url();
 if(isset($actividades))
 {
 	echo "<h1 id='tituloActividad'>Actividades de tus amigos</h1>";
@@ -43,7 +44,7 @@ if(isset($actividades))
 		foreach ($amigo as $actividad) 
 		{
 			echo "<div id=actividad>";
-			echo "<img id='imagenActividadHome' src=\"../../img/tipo/".$actividad->tipo->id."\">";
+			echo "<img id='imagenActividadHome' src='" . $base . "img/tipo/" . $actividad->tipo->id .  ".jpg'\">";
 			echo "<h2>".$actividad->nombre."</h2><br>";
 			echo "Fecha: ".$actividad->fecha_inicio."<br>";
 			echo "Ciudad del evento: ".$actividad->ciudad->nombre. "<br>";
