@@ -11,7 +11,6 @@ class Welcome extends CI_Controller {
 
 		$this->load->helper('url');
 		$this->load->helper('form');
-		$this->load->helper('email');
 
         $this->load->model('modelo_usuario');
         $this->load->model('modelo_amigo');
@@ -20,6 +19,9 @@ class Welcome extends CI_Controller {
         $this->load->model('modelo_reporte');
         $this->load->model('modelo_actividad');
         $this->load->model('modelo_usuario_actividad');
+
+        $this->load->helper('string');
+
     }
 
 	public function cargarInicio()
@@ -268,5 +270,99 @@ class Welcome extends CI_Controller {
 		session_destroy();
 		$this->cargarInicio();
 	}
+
+	public function recuperarContrasenya()
+	{
+		//Cargamos vista para pedir alias
+		$this->load->view('recuperar_contrasenya');
+
+		//Una vez tenemos el alias del usuario
+		if (isset($_POST['alias']))
+		{
+			//Comprobamos que el alias existe
+			if ($usuario = $this->modelo_usuario->get_usuario_alias($_POST['alias']))
+			{
+				//Generamos un código aleatorio
+				$codigo = random_string('alnum', 16);
+
+				//Configuramos el correo
+				$email_config = Array(
+		            'protocol'  => 'smtp',
+		            'smtp_host' => 'ssl://smtp.gmail.com',
+		            'smtp_port' => '465',
+		            'smtp_user' => 'friendshipdiary.network@gmail.com',
+		            'smtp_pass' => 'undiezenpw',
+		            'mailtype'  => 'html',
+		            'starttls'  => true,
+		            'newline'   => "\r\n"
+	        	);
+
+				//Cargamos la librería email con nuestra configuración
+		        $this->load->library('email', $email_config);
+
+		        //Mandamos un correo al usuario con el código
+		        $this->email->from('friendshipdiary.network@gmail.com', 'Contraseña');
+		        $this->email->to($usuario->email);
+		        $this->email->subject('FriendShipDiary');
+		        $this->email->message("Por favor, introduce este código en nuestra página para recuperar tu contraseña: $codigo ");
+
+		        $this->email->send();
+
+		        $_SESSION['codigo']=$codigo;
+		        $_SESSION['usuario']=$usuario;
+
+		        $this->confirmarCodigo();		        
+			}
+			else
+			{
+				echo "El usuario introducido no existe";
+			}
+
+		}
+	}
+	public function confirmarCodigo()
+	{
+		//Una vez el usuario ha introducido el código
+        if(isset($_POST['code']))
+        {
+        	//El código es correcto
+        	if($_POST['code']==$_SESSION['codigo'])
+        	{
+        		$this->cambiarContrasenya();
+        	}
+        	else
+        	{
+        		echo "El código introducido no es correcto";
+        	}
+        }
+        else
+        {
+        	//Cargamos la vista para pedir el código
+			$data['codigo']=$_SESSION['codigo'];
+			$this->load->view('recuperar_contrasenya',$data);
+        }
+	}
+
+	public function cambiarContrasenya()
+	{
+	
+		//Una vez el usuario ha elegido su nueva contraseña
+		if(isset($_POST['nueva']))
+		{
+			//Modificamos la contraseña del usuario
+			$_SESSION['usuario']->pass=md5($_POST['nueva']);
+			$this->modelo_usuario->modificar_usuario($_SESSION['usuario']);
+			//redirect('/', 'refresh');
+			$this->cargarInicio();
+			echo "Contraseña cambiada";
+		}
+		else
+		{
+			//Cargamos la vista para pedir la nueva contraseña
+        	$this->load->view('cambiar_contrasenya');
+		}
+
+	}
+
 }
 ?>

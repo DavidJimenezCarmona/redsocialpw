@@ -1,4 +1,4 @@
-    <?
+<?
 class modelo_perfil extends CI_Model {
 
     function __construct()

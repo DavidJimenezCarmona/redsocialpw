@@ -91,18 +91,18 @@ class modelo_usuario extends CI_Model {
     }
 
 
-    function modificar_usuario()
+    function modificar_usuario($usuario)
     {
-        $this->alias=$_POST['alias'];
-        $this->pass=$_POST['pass'];
-        $this->nombre=$_POST['nombre'];
-        $this->apellidos=$_POST['apellidos'];
-        $this->sexo=$_POST['sexo'];
-        $this->fecha_nacimiento=$_POST['fecha_nacimiento'];
-        $this->email=$_POST['email'];
-        $this->activo=$_POST['activo'];
+        $this->alias=$usuario->alias;
+        $this->pass=$usuario->pass;
+        $this->nombre=$usuario->nombre;
+        $this->apellidos=$usuario->apellidos;
+        $this->sexo=$usuario->sexo;
+        $this->fecha_nacimiento=$usuario->fecha_nacimiento;
+        $this->email=$usuario->email;
+        $this->activo=$usuario->activo;
 
-        $this->db->update('usuario', $this, array('id' => $_POST['id']));
+        $this->db->update('usuario', $this, array('id' => $usuario->id));
     }
 
     function borrar_usuario()
