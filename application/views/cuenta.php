@@ -34,19 +34,24 @@
 		</div>
 
 <?
-if(isset($perfil)) {
+if(isset($actividades))
+{
+	echo "<h1 id='tituloActividad'>Actividades de tus amigos</h1>";
 
-	echo "<div class=\"ficha\"
-		<p class=\"titulo_perfil\"> Datos del perfil del usuario </p>";
-		if(isset ($_SESSION['perfil']->ciudad_nacimiento->nombre))
-			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_nacimiento->nombre."</p>";
-		if(isset ($_SESSION['perfil']->ciudad_residencia->nombre))
-			echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ciudad_residencia->nombre."</p>";
-		
-		echo "<p class=\"texto_perfil\">".$_SESSION['perfil']->ocupacion."</p>
-		<p class=\"texto_perfil\">".$_SESSION['perfil']->centro_actividad."</p>
-		</div>";
-				
-
+	foreach ($actividades as $amigo) 
+	{
+		foreach ($amigo as $actividad) 
+		{
+			echo "<div id=actividad>";
+			echo "<img id='imagenActividadHome' src=\"../../img/tipo/".$actividad->tipo->id."\">";
+			echo "<h2>".$actividad->nombre."</h2><br>";
+			echo "Fecha: ".$actividad->fecha_inicio."<br>";
+			echo "Ciudad del evento: ".$actividad->ciudad->nombre. "<br>";
+			echo "Lugar del evento: ".$actividad->lugar. "<br>";
+			echo "Plazas libres: ".$actividad->plazas."<br>";
+			echo "Descripción: ".$actividad->descripcion;
+		echo "</div><br>";
+		}
+	}
 }
 ?>

@@ -8,7 +8,7 @@
 		echo form_submit('Buscar','Buscar');
 		echo form_close();
 	?>
-</div>
+</div><br>
 
 <?
 	if(isset($actividadesNoActivas))
@@ -24,7 +24,7 @@
 				echo "Plazas libres: ".$actividad->plazas."<br>";
 				echo "Descripción: ".$actividad->descripcion;
 				echo "<a id='botonNoir' href='asistir?actividad=".$actividad->id."'> Asistir </A>";
-			echo "</div>";
+			echo "</div><br>";
 		}
 	}
 ?>

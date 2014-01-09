@@ -1,11 +1,11 @@
+<h1 id='tituloActividad'>Amigos</h1>
 <? 
 
 if(isset($mensaje)) {
 	echo $mensaje;
 }
 
-if(isset($amigos)) {
-	print_r($amigos);	
+if(isset($amigos)) {	
 	foreach ($amigos as $amigo) {
 		if($amigo->sexo == 1) {
 			$sexo = "Hombre";

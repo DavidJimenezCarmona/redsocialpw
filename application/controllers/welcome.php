@@ -19,6 +19,7 @@ class Welcome extends CI_Controller {
         $this->load->model('modelo_ciudad');
         $this->load->model('modelo_reporte');
         $this->load->model('modelo_actividad');
+        $this->load->model('modelo_usuario_actividad');
     }
 
 	public function cargarInicio()
@@ -62,9 +63,19 @@ class Welcome extends CI_Controller {
 			$_SESSION["reportes"] = 0;
 		}
 
+		//Cargamos las actividades de los amigos
+		//Primero cargamos a los amigos
+		$amigos=$this->modelo_amigo->get_amigos($_SESSION['usuario']->id);
+
+		//Cargamos las actividades de cada amigo
+		foreach ($amigos as $amigo) 
+		{
+			$data['actividades'][$amigo->alias]=$this->modelo_usuario_actividad->get_actividades($amigo->id);
+		}
+
 			//Cargamos las vistas
-			$this->load->view('headers_cuenta',$data);
-			$this->load->view('cuenta');
+			$this->load->view('headers_cuenta');
+			$this->load->view('cuenta',$data);
 			$this->load->view('footer_comun');
 	}
 

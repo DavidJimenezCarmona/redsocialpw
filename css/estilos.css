@@ -301,6 +301,16 @@ font-style: normal;
   padding: 0px;
 }
 
+#imagenActividadHome
+{
+  height: 8em;
+  width: 30em;
+  clear:left;
+  margin: 10px 30 10px 10px !important;
+  margin: 10px 30 10px 5px;
+  padding: 0px;
+}
+
 #actividad
 {
   margin:0 auto 0 auto;
