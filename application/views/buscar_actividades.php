@@ -11,6 +11,7 @@
 </div><br>
 
 <?
+	$base = base_url();
 	if(isset($actividadesNoActivas))
 	{
 		foreach ($actividadesNoActivas as $actividad) 
