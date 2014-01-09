@@ -137,7 +137,16 @@ class controlador_amigos extends CI_Controller {
 
 	public function aceptar_peticion($id1, $id2) 
 	{
-		$peticiones = $this->modelo_amigo->aceptar_peticion($id1, $id2);
+		$this->modelo_amigo->aceptar_peticion($id1, $id2);
+		$notificaciones = $this->modelo_amigo->notificaciones_pendientes($_SESSION['usuario']->id);
+
+		if($notificaciones == 1) {  //Hay notificaciones pendientes
+			$_SESSION["notificaciones"] = 1;
+		}
+
+		else {
+			$_SESSION["notificaciones"] = 0;
+		}
 		$this->load->view('headers_cuenta');
 		$data['mensaje'] = "Has aceptado la petición de amistad, ahora puedes encontrar a este usuario en tu lista de amigos!";
 		$this->load->view('notificacion', $data);
