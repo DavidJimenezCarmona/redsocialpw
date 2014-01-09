@@ -73,6 +73,29 @@ class controlador_reporte extends CI_Controller {
         $this->load->view('footer_comun');
     }
 
+    public function banear_usuario_admin($idUser) {
+        $this->modelo_usuario->banear_usuario($idUser); //Se banea al usuario reportado
+        $data["usuario"] = $_SESSION['usuario'];
+        $data["notificaciones"] = $_SESSION['notificaciones'];
+        $_SESSION['reportes'] = $this->modelo_reporte->notificaciones_pendientes(); //Volvemos a calcularlo ya que hemos quitado 1
+        $data["reportes"] = $_SESSION['reportes'];
+        $this->load->view('headers_cuenta');
+        $data['mensaje'] = "El usuario se ha baneado.";
+        $this->load->view('notificacion', $data);
+        $this->load->view('footer_comun');
+    }
+
+    public function desbanear_usuario_admin($idUser) {
+        $this->modelo_usuario->desbanear_usuario($idUser); //Se desbanea al usuario reportado
+        $data["usuario"] = $_SESSION['usuario'];
+        $data["notificaciones"] = $_SESSION['notificaciones'];
+        $data["reportes"] = $_SESSION['reportes'];
+        $this->load->view('headers_cuenta');
+        $data['mensaje'] = "El usuario se ha desbaneado.";
+        $this->load->view('notificacion', $data);
+        $this->load->view('footer_comun');
+    }
+
     public function eliminar_reporte($idReporte) {
 
         $this->modelo_reporte->borrar_reporte_id($idReporte);
