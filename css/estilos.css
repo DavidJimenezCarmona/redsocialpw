@@ -149,6 +149,14 @@ font-style: normal;
 	margin: auto;
 }
 
+#logoam {
+  height: 12em;
+  width: 12em;
+  float: left;
+  display: block;
+  margin: auto;
+}
+
 #formulario_login {
 	font-family: 'Chau Philomene One', sans-serif;
 	font-size: 20;

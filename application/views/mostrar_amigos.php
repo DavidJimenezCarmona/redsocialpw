@@ -4,6 +4,7 @@
 if(isset($mensaje)) {
 	echo $mensaje;
 }
+$base = base_url();
 
 if(isset($amigos)) {	
 	foreach ($amigos as $amigo) {
@@ -16,7 +17,7 @@ if(isset($amigos)) {
 		echo "<div class=\"ficha\">";
 
 				if($amigo->perfil->foto==1)
-					echo "<div id='avatar'> <img id='logo' src='". base_url() ."img/fotos_perfil/".$amigo->alias."'/><br></div>";
+					echo "<img id='logoam' src='". $base . "img/fotos_perfil/". $_SESSION['usuario']->alias .".jpg'/>";
 				else 	
 					echo "<div id='avatar'> <img id='logo' src='". base_url() ."img/avatar.jpg'/><br></div>";
 

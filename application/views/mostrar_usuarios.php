@@ -64,11 +64,11 @@ if(isset($amigos))
 					<a class=\"enlace\" href='".base_url()."index.php/controlador_amigos/agregar_amigo/".$amigos->id."'><span>Agregar como amigo</span></a><br><br>";
 						
 					if($_SESSION['usuario']->permisos == 1 && $amigos->activo == 1) { //Es administrador y el usuario no esta baneado aún
-						echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/crear_reporte_admin/".$amigos->id."'><span>Reportar usuario</span></a>";	
+						echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/crear_reporte_admin/".$amigos->id."'><span>Banear usuario</span></a>";	
 					}
 
 					else if($_SESSION['usuario']->permisos == 1) {//Es administrador y el usuario esta baneado.
-						echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/eliminar_reporte_admin/".$amigos->id."'><span>Eliminar reporte</span></a>";	
+						echo "<a class=\"enlace\" href='".base_url()."index.php/controlador_reporte/eliminar_reporte_admin/".$amigos->id."'><span>Eliminar baneo</span></a>";	
 					}
 				echo "</div>";
 			}

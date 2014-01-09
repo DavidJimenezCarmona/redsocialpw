@@ -45,9 +45,23 @@ class controlador_reporte extends CI_Controller {
             $reporte->id_usuario_reportado=$idUser;
             $reporte->id_usuario_reportador=$_SESSION["usuario"]->id;
             $reporte->motivo ="Baneado por un administrador";
+            $reporte->estado = 0;
 
             $this->modelo_reporte->insertar_reporte($reporte);
-            $this->banear_usuario('mysql_insert_id' , $idUser);
+
+            //Recuperamos el usuario
+            $usuario = $this->modelo_usuario->get_usuario($idUser);
+
+            //Lo baneamos
+            $usuario->activo=0;
+
+            //Lo guardamos
+            $this->modelo_usuario->modificar_usuario($usuario);
+
+            $this->load->view('headers_cuenta');
+            $data['mensaje'] = "Se ha baneado el usuario.";
+            $this->load->view('notificacion', $data);
+            $this->load->view('footer_comun');
         }
     }
 

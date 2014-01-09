@@ -47,11 +47,11 @@ class modelo_usuario extends CI_Model {
 
     function get_usuario($id)
     {
-        $this->db->select('usuario');
+        $this->db->select();
         $this->db->where('id', $id);    
         $query = $this->db->get('usuario');
 
-        return $query->result();
+        return $query->row();
     }
 
     function get_usuario_alias($alias)
