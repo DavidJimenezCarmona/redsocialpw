@@ -11,7 +11,7 @@
 	foreach ($actividades as $actividad) 
 	{
 		echo "<div id=actividad>";
-			echo "<img id='imagenActividad' src=\"../../img/tipo/".$actividad->tipo->id."\">";
+			echo "<img id='imagenActividadHome' src='" . $base . "img/tipo/" . $actividad->tipo->id .  ".jpg'\">";
 			echo "<h2>".$actividad->nombre."</h2><br>";
 			echo "Fecha: ".$actividad->fecha_inicio."<br>";
 			echo "Ciudad del evento: ".$actividad->ciudad->nombre. "<br>";
