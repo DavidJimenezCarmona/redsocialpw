@@ -17,8 +17,7 @@ if(isset($amigos)) {
 		echo "<div class=\"ficha\">";
 
 				if($amigo->perfil->foto==1)
-					echo "<img id='logoam' src='". base_url() . "img/fotos_perfil/". $_SESSION['usuario']->alias .".jpg'/>";
-				else 	
+					echo "<img id='logoam' src='". $base . "img/fotos_perfil/". $amigo->alias .".jpg'/>";				else 	
 					echo "<div id='avatar'> <img id='logo' src='". base_url() ."img/avatar.jpg'/><br></div>";
 
 

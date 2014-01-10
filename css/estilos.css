@@ -217,6 +217,16 @@ font-style: normal;
     font-weight: bold;
 }
 
+#perfil
+{
+  display: block;
+  background: #4E9CAF;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
 #mensaje_error {
 	text-align: center;
 	color: red;

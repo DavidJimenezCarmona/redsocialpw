@@ -106,7 +106,7 @@ class Welcome extends CI_Controller {
 
 		$this->modelo_perfil->modificar_perfil($perfil);
 		$_SESSION['perfil']=$perfil;
-		$this->home();
+		$this->cargarCuenta($_SESSION['usuario']);
 	}
 
 	public function cargarInicioErroneo($mensaje)

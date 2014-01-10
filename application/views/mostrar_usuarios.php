@@ -44,7 +44,7 @@ if(isset($amigos))
 			$unico=1;
 		}
 	}
-
+	$base = base_url();
 	if ($unico==1)
 	{
 		if($amigos->alias != $_SESSION['usuario']->alias) 
@@ -55,8 +55,14 @@ if(isset($amigos))
 				else {
 					$sexo = "Mujer";
 				}
-				echo "<div class=\"ficha\">
-					<p class=\"texto_ficha\">".$amigos->alias."</p>
+				echo "<div class=\"ficha\">";
+
+				if($amigos->perfil[0]->foto==1)
+					echo "<img id='logoam' src='". $base . "img/fotos_perfil/". $amigos->alias .".jpg'/>";
+				else 	
+					echo "<div id='avatar'> <img id='logo' src='". base_url() ."img/avatar.jpg'/><br></div>";
+
+					echo "<p class=\"texto_ficha\">".$amigos->alias."</p>
 					<p class=\"texto_ficha\">".$amigos->nombre."</p>
 					<p class=\"texto_ficha\">".$amigos->apellidos."</p>
 					<p class=\"texto_ficha\">".$sexo."</p>

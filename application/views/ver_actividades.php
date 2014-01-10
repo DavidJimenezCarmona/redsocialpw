@@ -8,6 +8,7 @@
 	</p>
 
 <?
+	$base = base_url();
 	foreach ($actividades as $actividad) 
 	{
 		echo "<div id=actividad>";

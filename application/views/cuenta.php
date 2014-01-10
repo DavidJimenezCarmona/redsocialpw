@@ -11,6 +11,22 @@
 	?>
 
 	<a id='botonNoir' href='modificar_perfil'> Modificar perfil </A>
+	<p id="saludo"> Perfil: </p>
+	<div id='perfil'>
+	<? 
+		if($_SESSION['perfil']->ciudad_nacimiento != null)
+		{
+		echo "Ciudad de nacimiento: " .$_SESSION['perfil']->ciudad_nacimiento->nombre. "<br>";
+		echo "Ciudad de residencia: " .$_SESSION['perfil']->ciudad_residencia->nombre."<br>";
+		echo "Ocupación: " .$_SESSION['perfil']->ocupacion."<br>";
+		echo "Centro de trabajo / Estudios: " .$_SESSION['perfil']->centro_actividad."<br>";
+		}
+		else
+		{
+			echo "Por favor rellena los datos de tu perfil";
+		}
+	 ?>
+	 </div>
 </div>
 
 <? 
@@ -56,3 +72,4 @@ if(isset($actividades))
 	}
 }
 ?>
+

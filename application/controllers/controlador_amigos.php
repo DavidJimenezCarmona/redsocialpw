@@ -29,6 +29,7 @@ class controlador_amigos extends CI_Controller {
 		if($usuario['nombre'] != '') 
 		{
 			$amigos=$this->modelo_usuario->get_usuario_alias($usuario['nombre']);
+			$amigos->perfil = array($this->modelo_perfil->get_perfil($amigos->id));
 
 			if($amigos == null) 
 			{
